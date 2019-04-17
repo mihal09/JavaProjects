@@ -26,21 +26,28 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseMoved(MouseEvent e){
         int x = e.getX();
         int y = e.getY();
-        int nearest = figury[0].getNearestVertice(x,y,20);
-        Cursor cursor =  new Cursor(Cursor.DEFAULT_CURSOR);;
-        if(nearest!=-1){ //mamy wierzcholek
-            if(nearest==0)
-                cursor = new Cursor(Cursor.NW_RESIZE_CURSOR);
-            else if(nearest==1)
-                cursor = new Cursor(Cursor.NE_RESIZE_CURSOR);
-            else if(nearest==2)
-                cursor = new Cursor(Cursor.SW_RESIZE_CURSOR);
-            else if(nearest==3)
-                cursor = new Cursor(Cursor.SE_RESIZE_CURSOR);
+        Cursor cursor =  null;
+        for(FiguraProstokatna figura : figury){
+            int nearest = figura.getNearestVertice(x,y,20);
+            if(nearest!=-1){ //mamy wierzcholek
+                if(nearest==0)
+                    cursor = new Cursor(Cursor.NW_RESIZE_CURSOR);
+                else if(nearest==1)
+                    cursor = new Cursor(Cursor.NE_RESIZE_CURSOR);
+                else if(nearest==2)
+                    cursor = new Cursor(Cursor.SW_RESIZE_CURSOR);
+                else if(nearest==3)
+                    cursor = new Cursor(Cursor.SE_RESIZE_CURSOR);
+            }
+            else if(figura.isPointInside(x,y)){
+                cursor = new Cursor(Cursor.MOVE_CURSOR);
+            }
+            if(cursor!=null){
+                break;
+            }
         }
-        else if(figury[0].isPointInside(x,y)){
-            cursor = new Cursor(Cursor.MOVE_CURSOR);
-        }
+        if(cursor==null)
+            cursor = new Cursor(Cursor.DEFAULT_CURSOR);
         myJFrame.setCursor(cursor);
     }
 
@@ -69,24 +76,25 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         // System.out.println("Mouse dragged:"+x+","+y);
     }
 
-    void mouseUsed(int x, int y){
-        if(prevX==-1 || prevY==-1){
+    void mouseUsed(int x, int y) {
+        if (prevX == -1 || prevY == -1) {
             prevX = x;
             prevY = y;
         }
-        int nearest = figury[0].getNearestVertice(x,y,20);
-        if(nearest!=-1){ //mamy wierzcholek
-            figury[0].moveVertice(x,y,nearest);
-        }
-        else if(figury[0].isPointInside(x,y)){
-            int dx = x - prevX;
-            int dy = y - prevY;
-            figury[0].move(dx,dy);
-        }
+        int dx = x - prevX;
+        int dy = y - prevY;
 
-        myJFrame.repaint();
-        prevX = x;
-        prevY = y;
+        for(FiguraProstokatna figura : figury) {
+            int nearest = figura.getNearestVertice(x, y, 20);
+            if (nearest != -1) { //mamy wierzcholek
+                figura.moveVertice(x, y, nearest);
+            } else if (figura.isPointInside(x, y)) {
+                figura.move(dx, dy);
+            }
+            myJFrame.repaint();
+            prevX = x;
+            prevY = y;
+        }
     }
 
     @Override
@@ -147,8 +155,14 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 class MyJFrame extends JFrame{
 
     public MyJFrame(){
-        FiguraProstokatna[] figury = new FiguraProstokatna[1];
+        FiguraProstokatna[] figury = new FiguraProstokatna[2];
         figury[0] = new Prostokat(100, 200, 200, 150);
+//        figury[1] = new Kolo(400, 400, 50);
+        Point[] punkty = new Point[3];
+        punkty[0] = new Point(400,300);
+        punkty[1] = new Point(500,300);
+        punkty[2] = new Point(450,400);
+        figury[1] = new Wielokat(punkty);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(30, 30, 800, 600);
         getContentPane().add(new MyCanvas(figury,this));

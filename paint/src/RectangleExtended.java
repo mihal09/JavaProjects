@@ -22,6 +22,9 @@ public class RectangleExtended extends Rectangle {
     public RectangleExtended(int x, int y, int width, int height){
         super(x,y,width,height);
     }
+    public RectangleExtended(){
+        super();
+    }
 
     public Point[] getVertices(){
         Point[] vertices = new Point[4];

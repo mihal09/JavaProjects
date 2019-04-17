@@ -20,6 +20,6 @@ public class Prostokat extends FiguraProstokatna {
     public void draw(Graphics g) {
         g.drawRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
         int r = 20;
-        g.drawOval((int)vertices[0].getX()-r,(int)vertices[0].getY()-r, 2*r, 2*r);
+//        g.drawOval((int)vertices[0].getX()-r,(int)vertices[0].getY()-r, 2*r, 2*r);
     }
 }

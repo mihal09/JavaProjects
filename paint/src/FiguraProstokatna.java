@@ -10,8 +10,10 @@ public abstract class FiguraProstokatna extends Figura {
         //przesuwamy ramkę
         bounds.setLocation((int)bounds.getX()+dx,(int)bounds.getY()+dy);
         //przesuwamy punkty
-        for(int i=0; i<vertices.length; i++){
-            vertices[i].setLocation( vertices[i].getX()+dx, vertices[i].getY()+ dy);
+        if(vertices!=null) {
+            for (int i = 0; i < vertices.length; i++) {
+                vertices[i].setLocation(vertices[i].getX() + dx, vertices[i].getY() + dy);
+            }
         }
     }
 
@@ -21,6 +23,10 @@ public abstract class FiguraProstokatna extends Figura {
 
     public FiguraProstokatna(int x, int y, int width, int height){
         bounds = new RectangleExtended(x,y,width,height);
+    }
+
+    public FiguraProstokatna(){
+        bounds = new RectangleExtended();
     }
 
     public boolean isPointInside(int x, int y){
