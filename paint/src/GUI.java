@@ -1,9 +1,7 @@
 import javax.swing.*;
 //import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 
@@ -12,7 +10,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private final static int closeCurveRadius = 20;
     MyJFrame myJFrame;
     ArrayList<Figura> figures;
-    FiguraProstokatna activeFigure = null;
+    FiguraProstokatna selectedFigure = null;
     int selectedVertice = -1;
     ActionState action = ActionState.NOTHING;
     Point paintingPivot;
@@ -21,15 +19,37 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     Color selectedColor = Color.DARK_GRAY;
     int prevX, prevY;
 
+    public void startEditing(){
+        if(action==ActionState.NOTHING || action==ActionState.CREATING)
+            action = ActionState.EDITING;
+        else if(action==ActionState.CREATING || action==ActionState.SELECTING_POINTS){
+            action = ActionState.EDITING;
+            figures.add(selectedFigure);
+            selectedFigure = null;
+            myJFrame.validate();
+            myJFrame.repaint();
+        }
+    }
+
+    public void startCreating(){
+        if(action==ActionState.NOTHING || action==ActionState.EDITING)
+            action = ActionState.CREATING;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
+        System.out.println(SwingUtilities.isRightMouseButton(e));
         System.out.println("Mouse pressed: "+x+","+y);
     }
 
     @Override
     public void mouseMoved(MouseEvent e){
+        if(action == ActionState.CREATING || action ==  ActionState.PAINTING || action ==  ActionState.SELECTING_POINTS){
+            myJFrame.setCursor(Cursor.DEFAULT_CURSOR);
+            return;
+        }
         int x = e.getX();
         int y = e.getY();
         Cursor cursor =  null;
@@ -70,7 +90,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             if(temporaryFigure.getDrawingType()==DrawingType.POINT){
                 action = ActionState.SELECTING_POINTS;
 
-                activeFigure = temporaryFigure;
+                selectedFigure = temporaryFigure;
                 paintingPoints = new ArrayList<>();
                 paintingPoints.add(paintingPivot);
             }
@@ -83,17 +103,35 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         else if(action==ActionState.SELECTING_POINTS){ //aktualnie wybieramy punkty
             paintingPoints.add(paintingPivot);
-            ((Wielokat) activeFigure).addVertices(paintingPoints.toArray(new Point[paintingPoints.size()]));
+            ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[paintingPoints.size()]));
             if(paintingPivot.distance(paintingPoints.get(0))<=closeCurveRadius){
                 action = ActionState.CREATING;
-                figures.add(activeFigure);
-                activeFigure = null;
+                figures.add(selectedFigure);
+                selectedFigure = null;
             }
             myJFrame.validate();
             myJFrame.repaint();
         }
+        else if(action==ActionState.EDITING){
+            for(Figura figure : figures) {
+                int nearest = figure.getNearestVertice(x, y, 20);
+                if (nearest != -1) { //mamy wierzcholek
+                    action = ActionState.RESIZING;
+                    selectedVertice = nearest;
+                    selectedFigure = (FiguraProstokatna)figure;
+                    selectedFigure.moveVertice(x, y, selectedVertice);
+                    break;
+                } else if (figure.isPointInside(x, y)) {
+                    action = ActionState.MOVING;
+                    selectedFigure = (FiguraProstokatna)figure;
+                    break;
+                }
+            }
+        }
 
 
+        myJFrame.validate();
+        myJFrame.repaint();
         prevX = x;
         prevY = y;
         System.out.println("Mouse pressed:"+x+","+y);
@@ -103,11 +141,19 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseReleased(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        if(action==ActionState.PAINTING){
-            figures.add(activeFigure);
-            activeFigure = null;
+        if(action == ActionState.PAINTING){
+            figures.add(selectedFigure);
+            selectedFigure = null;
             myJFrame.validate();
             myJFrame.repaint();
+        }
+        else if(action == ActionState.MOVING){
+            action = ActionState.EDITING;
+            selectedFigure = null;
+        }
+        else if(action == ActionState.RESIZING){
+            action = ActionState.EDITING;
+            selectedFigure = null;
         }
         System.out.println("Mouse released:"+x+","+y);
     }
@@ -116,13 +162,33 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseDragged(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
+        boolean shouldRepaint = false;
         if(action==ActionState.PAINTING){
             Point p = new Point(x,y);
-            activeFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, p);
-            activeFigure.setColor(selectedColor);
+            selectedFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, p);
+            selectedFigure.setColor(selectedColor);
         }
 //        System.out.println("Mouse dragged:"+x+","+y);
-        mouseUsed(x,y);
+//        mouseUsed(x,y);
+
+        int dx = x - prevX;
+        int dy = y - prevY;
+
+        if(action == ActionState.RESIZING){
+            selectedFigure.moveVertice(x, y, selectedVertice);
+            shouldRepaint=true;
+        }
+        else if(action == ActionState.MOVING){
+            selectedFigure.move(dx,dy);
+            shouldRepaint=true;
+        }
+
+        if(shouldRepaint){
+            myJFrame.validate();
+            myJFrame.repaint();
+        }
+        prevX = x;
+        prevY = y;
     }
 
     void mouseUsed(int x, int y) {
@@ -132,6 +198,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         int dx = x - prevX;
         int dy = y - prevY;
+
 
         for(Figura figure : figures) {
             int nearest = figure.getNearestVertice(x, y, 20);
@@ -147,13 +214,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
     }
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
+    @Override public void mouseEntered(MouseEvent e) {
 
     }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
+    @Override public void mouseExited(MouseEvent e) {
 
     }
 
@@ -173,14 +237,37 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
     }
     public void paintComponent(Graphics g) {
-        if(activeFigure !=null)
-            activeFigure.draw(g);
+        if(selectedFigure !=null)
+            selectedFigure.draw(g);
         for(Figura figure : figures){
             figure.draw(g);
         }
     }
 }
 
+class MyToolbar extends JPanel{
+    MyJFrame myJFrame;
+    public MyToolbar(MyJFrame myJFrame) {
+        this.myJFrame = myJFrame;
+        setLayout(new GridLayout(1,2));
+        JButton b1 = new JButton("Tryb rysowania");
+        JButton b2 = new JButton("Tryb edycji");
+
+        b1.addActionListener(e -> {
+            b2.setBackground(new Color(243,245, 247));
+            b1.setBackground(new Color(202,204, 206));
+            myJFrame.startCreating();
+        });
+        b2.addActionListener(e -> {
+            b1.setBackground(new Color(243,245, 247));
+            b2.setBackground(new Color(202,204, 206));
+            myJFrame.startEditing();
+        });
+        add(b1);
+        add(b2);
+        setVisible(true);
+    }
+}
 
 //class MyListener extends MouseInputAdapter {
 //    public void mousePressed(MouseEvent e) {
@@ -211,24 +298,12 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 /*--------------------------------------------------------------------*/
 //GLOWNA KLATKA
 class MyJFrame extends JFrame{
-    void showInfo(){
-        JDialog d = new JDialog(this, "Informacje", true );
-        d.setLayout(new GridLayout(3,2,8,8));
-        JLabel lab1 = new JLabel("Nazwa programu: FiGURU", SwingConstants.CENTER);
-        JLabel lab2 = new JLabel("Autor: Michał Janik", SwingConstants.CENTER);
-        JLabel lab3 = new JLabel("<html>Przeznaczenie: Rysowanie figur geometrycznych, ich skalowanie i przesuwanie. <br>Możliwość zapisu/odczytu z pliku.</html>", SwingConstants.CENTER);
-
-        lab1.setVerticalAlignment(SwingConstants.CENTER);
-        lab2.setVerticalAlignment(SwingConstants.CENTER);
-        lab3.setVerticalAlignment(SwingConstants.CENTER);
-        lab1.setBorder(BorderFactory.createLineBorder(Color.black));
-        lab2.setBorder(BorderFactory.createLineBorder(Color.black));
-        lab3.setBorder(BorderFactory.createLineBorder(Color.black));
-        d.add(lab1);
-        d.add(lab2);
-        d.add(lab3);
-        d.setSize(600, 300);
-        d.show();
+    MyCanvas myCanvas;
+    public void startCreating(){
+        myCanvas.startCreating();
+    }
+    public void startEditing(){
+        myCanvas.startEditing();
     }
     public MyJFrame(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -267,9 +342,12 @@ class MyJFrame extends JFrame{
         figury[1].setColor(Color.GREEN);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(30, 30, 800, 600);
-        getContentPane().add(new MyCanvas(figury,this));
+
+        getContentPane().add(new MyToolbar(this),BorderLayout.PAGE_START);
+        myCanvas = new MyCanvas(figury,this);
+        getContentPane().add(myCanvas);
         setVisible(true);
-        showInfo();
+//        showInfo();
     }
 }
 

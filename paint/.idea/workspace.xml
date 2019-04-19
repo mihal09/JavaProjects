@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ActionState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DrawingType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FiguresFabric.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/Figura.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/Figura.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/Prostokat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/Prostokat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/RectangleExtended.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/RectangleExtended.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paint.iml" beforeDir="false" afterPath="$PROJECT_DIR$/paint.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FiguraProstokatna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguraProstokatna.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kolo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Prostokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Prostokat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wielokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wielokat.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,10 +85,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="215" column="36" selection-start-line="215" selection-start-column="35" selection-end-line="215" selection-end-column="36" />
+            <state relative-caret-position="306">
+              <caret line="42" column="65" selection-start-line="42" selection-start-column="65" selection-end-line="42" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#mouseUsed#0;class#MyCanvas#0" />
+                <element signature="method#mouseEntered#0;class#MyCanvas#0" />
+                <element signature="method#mouseExited#0;class#MyCanvas#0" />
                 <element signature="e#8730#8731#0" expanded="true" />
                 <element signature="e#8776#8777#0" expanded="true" />
               </folding>
@@ -158,6 +145,7 @@
       <find>figura</find>
       <find>figures</find>
       <find>dragged</find>
+      <find>mouseUsed</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -221,7 +209,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555704654602" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555708647419" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -267,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555460500470</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="work in progress.">
+      <created>1555704667019</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1555704667020</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -332,7 +327,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="work in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress" />
+    <MESSAGE value="work in progress." />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -434,12 +430,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/event/ActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="215" column="36" selection-start-line="215" selection-start-column="35" selection-end-line="215" selection-end-column="36" />
+        <state relative-caret-position="306">
+          <caret line="42" column="65" selection-start-line="42" selection-start-column="65" selection-end-line="42" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#mouseUsed#0;class#MyCanvas#0" />
+            <element signature="method#mouseEntered#0;class#MyCanvas#0" />
+            <element signature="method#mouseExited#0;class#MyCanvas#0" />
             <element signature="e#8730#8731#0" expanded="true" />
             <element signature="e#8776#8777#0" expanded="true" />
           </folding>
