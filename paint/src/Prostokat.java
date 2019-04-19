@@ -18,8 +18,14 @@ public class Prostokat extends FiguraProstokatna {
 
     @Override
     public void draw(Graphics g) {
-        g.drawRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
+        g.setColor(getColor());
+        g.fillRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
         int r = 20;
 //        g.drawOval((int)vertices[0].getX()-r,(int)vertices[0].getY()-r, 2*r, 2*r);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+bounds.toString();
     }
 }

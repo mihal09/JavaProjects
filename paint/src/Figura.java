@@ -1,12 +1,16 @@
+import org.json.JSONObject;
+
 import java.awt.*;
-import java.awt.geom.Point2D;
 
-public abstract class Figura {
-    public abstract void move(int dx, int dy);
-    public abstract void moveVertice(int dx, int dy, int index);
-    public abstract void draw(Graphics g);
-    public abstract boolean isPointInside(int x, int y);
-    public abstract int getNearestVertice(int x, int y, int radius);
+public interface Figura {
+    void move(int dx, int dy);
+    void moveVertice(int dx, int dy, int index);
 
-    //protected Point2D.Double[] vertices;
+    void draw(Graphics g);
+    void setColor(Color c);
+
+    boolean isPointInside(int x, int y);
+    int getNearestVertice(int x, int y, int radius);
+
+    DrawingType getDrawingType();
 }
