@@ -11,7 +11,7 @@ public class Prostokat extends FiguraProstokatna {
         super(x,y,width,height);
         addVertices();
     }
-    void addVertices(){
+    public void addVertices(){
         vertices = new Point2D.Double[1];
         vertices[0] = new Point2D.Double(bounds.getCenterX(), bounds.getCenterY());
     }
@@ -33,6 +33,6 @@ public class Prostokat extends FiguraProstokatna {
 
     @Override
     public String toString() {
-        return super.toString()+bounds.toString();
+        return "Prostokat"+bounds.toString();
     }
 }

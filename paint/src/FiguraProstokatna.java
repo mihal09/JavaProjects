@@ -9,8 +9,8 @@ import java.awt.geom.Point2D;
 
 public abstract class FiguraProstokatna implements Figura {
     protected RectangleExtended bounds;
-    protected Point2D.Double[] vertices;
-    protected Color color = Color.darkGray;
+    transient public Point2D.Double[] vertices;
+    private Color color = Color.darkGray;
 
     private final static int minHeight=50, minWidth=50;
 
@@ -90,6 +90,7 @@ public abstract class FiguraProstokatna implements Figura {
         setColor(null);
     }
 
+    public void addVertices(){}
     public boolean isPointInside(int x, int y){
         return bounds.contains(x,y);
     }

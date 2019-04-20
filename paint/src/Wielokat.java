@@ -2,19 +2,38 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class Wielokat extends FiguraProstokatna {
-    GeneralPath path;
+    transient GeneralPath path;
     int xOffset, yOffset;
     double scaleX, scaleY;
+    ArrayList<Point> dziwnePunkty = new ArrayList<>();
     public Wielokat(Point[] points) {
         super();
         addVertices(points);
     }
+    public void addVertices(){
+        System.out.println(getColor());
+        if(dziwnePunkty.isEmpty())
+            System.out.println("DZIWNE PUNKTY JEST EMPTY");
+        else{
+            System.out.println("DZIWNE PUNKTY NIE JEST NULL "+ dziwnePunkty.size());
+            addVertices(dziwnePunkty.toArray(new Point[dziwnePunkty.size()]));
+        }
+    }
     public void addVertices(Point[] points){
+        System.out.println("PUNKTY: "+points);
         if(points==null)
             return;
-        System.out.println(points[0]);
+
+        vertices = new Point2D.Double[points.length];
+        dziwnePunkty.clear();
+        for (int i = 0; i < points.length; i++) {
+            vertices[i] =  new Point2D.Double(points[i].getX(),points[i].getY());
+            dziwnePunkty.add(points[i]);
+        }
+        System.out.println("XD: "+points[0]);
         xOffset = yOffset = 0;
         scaleX = scaleY = 1.0;
         path = new GeneralPath(GeneralPath.WIND_EVEN_ODD, points.length);
@@ -25,6 +44,15 @@ public class Wielokat extends FiguraProstokatna {
         }
         path.closePath();
         bounds.setBounds(path.getBounds());
+    }
+    public void addVertices(Point2D.Double[] pointsDouble){
+        if(pointsDouble==null)
+            return;
+        Point[] points = new Point[pointsDouble.length];
+        for (int i = 0; i < pointsDouble.length; i++) {
+            points[i] =  new Point((int)pointsDouble[i].getX(),(int)pointsDouble[i].getY());
+        }
+        addVertices(points);
     }
 
     @Override

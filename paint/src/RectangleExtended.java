@@ -4,6 +4,8 @@ public class RectangleExtended extends Rectangle {
     public RectangleExtended(Point p1, Point p2){
         //ustawiamy lewy gorny
         super();
+        if(p1 == null || p2 == null)
+            return;
 
         int minX, maxX, minY, maxY;
 

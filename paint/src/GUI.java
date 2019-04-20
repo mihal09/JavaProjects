@@ -2,9 +2,12 @@ import javax.swing.*;
 //import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.ArrayList;
 
 
+/*--------------------------------------------------------------------*/
+//PLOTNO
 class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private final static int dragRadius = 15;
     private final static int closeCurveRadius = 20;
@@ -19,6 +22,42 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     Color selectedColor = Color.DARK_GRAY;
     int prevX, prevY;
 
+    private void setFigures(Figura[] figuresArray){
+        figures.clear();
+        if(figuresArray==null)
+            return;
+        for(Figura figure : figuresArray){
+            figures.add(figure);
+        }
+    }
+    private Figura[] getFigures(){
+        return figures.toArray(new Figura[figures.size()]);
+    }
+    private File selectFile(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.addChoosableFileFilter(new MyFileFilter());
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            return file;
+        }
+        return null;
+    }
+    public void showSavePanel(){
+        File file = selectFile();
+        if(file!=null) {
+            setAction(ActionState.EDITING);
+            FigureManager.save(file,getFigures());
+            myJFrame.repaint();
+        }
+    }
+    public void showLoadPanel(){
+        File file = selectFile();
+        if(file!=null) {
+            setAction(ActionState.EDITING);
+            setFigures(FigureManager.load(file));
+            myJFrame.repaint();
+        }
+    }
     public void startEditing(){
         if(getAction() == ActionState.NOTHING || getAction() == ActionState.CREATING)
             setAction(ActionState.EDITING);
@@ -44,16 +83,13 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         myJFrame.repaint();
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
+    @Override public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         //jesli klikniety prawy przycisk myszy
        // System.out.println("Mouse clicked: "+x+","+y);
     }
-
-    @Override
-    public void mouseMoved(MouseEvent e){
+    @Override public void mouseMoved(MouseEvent e){
         if(getAction() == ActionState.CREATING){
             myJFrame.setCursor(Cursor.DEFAULT_CURSOR);
             return;
@@ -88,10 +124,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             cursor = new Cursor(Cursor.DEFAULT_CURSOR);
         myJFrame.setCursor(cursor);
     }
-
-
-    @Override
-    public void mousePressed(MouseEvent e) {
+    @Override public void mousePressed(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         if(!SwingUtilities.isRightMouseButton(e)) {
@@ -154,9 +187,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         prevY = y;
         System.out.println("Mouse pressed:"+x+","+y);
     }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
+    @Override public void mouseReleased(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
 
@@ -179,9 +210,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         System.out.println("Mouse released:"+x+","+y);
     }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
+    @Override public void mouseDragged(MouseEvent e) {
         Debug();
         int x = e.getX();
         int y = e.getY();
@@ -216,30 +245,6 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         prevX = x;
         prevY = y;
     }
-
-    void mouseUsed(int x, int y) {
-        if (prevX == -1 || prevY == -1) {
-            prevX = x;
-            prevY = y;
-        }
-        int dx = x - prevX;
-        int dy = y - prevY;
-
-
-        for(Figura figure : figures) {
-            int nearest = figure.getNearestVertice(x, y, 20);
-            if (nearest != -1) { //mamy wierzcholek
-                figure.moveVertice(x, y, nearest);
-            } else if (figure.isPointInside(x, y)) {
-                figure.move(dx, dy);
-            }
-            myJFrame.validate();
-            myJFrame.repaint();
-            prevX = x;
-            prevY = y;
-        }
-    }
-
     @Override public void mouseEntered(MouseEvent e) {
         Debug();
     }
@@ -248,7 +253,8 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     void Debug(){
-        System.out.println(getAction() +":"+selectedFigureName);
+        if(selectedFigure!=null)
+            System.out.println(getAction() +":"+selectedFigureName+selectedFigure.bounds);
     }
 
     public MyCanvas(Figura[] figury, MyJFrame myJFrame){
@@ -290,11 +296,13 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
 }
 
+/*--------------------------------------------------------------------*/
+//GORNY PANEL
 class MyToolbar extends JPanel{
     MyJFrame myJFrame;
     MyCanvas myCanvas;
-    JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo;
-    JPanel buttonsPanel,  figuresPanel;
+    JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo, bSave, bLoad;
+    JPanel topPanel, filePanel, buttonsPanel,  figuresPanel;
     public void selectMode(RunningMode mode){
         bEdit.setBackground(new Color(243,245, 247));
         bDraw.setBackground(new Color(243,245, 247));
@@ -312,7 +320,6 @@ class MyToolbar extends JPanel{
         }
 
         myJFrame.validate();
-        myCanvas.startCreating();
     }
     public MyToolbar(MyJFrame myJFrame, MyCanvas myCanvas) {
         this.myJFrame = myJFrame;
@@ -321,11 +328,15 @@ class MyToolbar extends JPanel{
         bDraw = new JButton("Tryb rysowania");
         bEdit = new JButton("Tryb edycji");
         bInfo = new JButton("Info");
+        bSave = new JButton("Zapisz");
+        bLoad = new JButton("Wczytaj");
         bProstokat = new JButton("Prostokat");
         bWielokat = new JButton("Wielokat");
         bKolo = new JButton("Kolo");
         buttonsPanel = new JPanel();
+        topPanel = new JPanel();
         figuresPanel = new JPanel();
+        filePanel = new JPanel();
         figuresPanel.setVisible(false);
 
 
@@ -364,46 +375,35 @@ class MyToolbar extends JPanel{
 
             bWielokat.setBackground(new Color(202,204, 206));
         });
+        bSave.addActionListener(e -> {
+            myCanvas.showSavePanel();
+        });
+        bLoad.addActionListener(e -> {
+            myCanvas.showLoadPanel();
+        });
+
+
 
 
         figuresPanel.add(bProstokat);
         figuresPanel.add(bWielokat);
         figuresPanel.add(bKolo);
 
+        filePanel.add(bSave);
+        filePanel.add(bLoad);
+
         buttonsPanel.add(bDraw);
         buttonsPanel.add(bEdit);
         buttonsPanel.add(bInfo);
-        add(buttonsPanel);
+
+        topPanel.add(filePanel);
+        topPanel.add(buttonsPanel);
+
+        add(topPanel);
         add(figuresPanel);
         setVisible(true);
     }
 }
-
-//class MyListener extends MouseInputAdapter {
-//    public void mousePressed(MouseEvent e) {
-//        int x = e.getX();
-//        int y = e.getY();
-//        System.out.println("Mouse pressed: "+x+","+y);
-//    }
-//
-//    public void mouseDragged(MouseEvent e) {
-//        int x = e.getX();
-//        int y = e.getY();
-//        System.out.println("Mouse dragged:"+x+","+y);
-//    }
-//
-//    public void mouseReleased(MouseEvent e) {
-//        int x = e.getX();
-//        int y = e.getY();
-//        System.out.println("Mouse released:"+x+","+y);
-//    }
-//
-//    public void mouseMoved(MouseEvent e){
-//        int x = e.getX();
-//        int y = e.getY();
-//        System.out.println("Mouse moved:"+x+","+y);
-//    }
-//}
 
 /*--------------------------------------------------------------------*/
 //GLOWNA KLATKA
@@ -429,41 +429,45 @@ class MyJFrame extends JFrame{
         d.setSize(600, 300);
         d.show();
     }
+
     public MyJFrame(){
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("FiGURU");
-        FiguraProstokatna[] figury = new FiguraProstokatna[4];
-        figury[0] = new Prostokat(100, 200, 200, 150);
-        figury[2] = new Kolo(300, 200, 100);
-//        System.out.println(figury[2].toJson());
+        FiguraProstokatna[] figury = new FiguraProstokatna[0];
+//        figury[0] = new Prostokat(100, 200, 200, 150);
+//        figury[2] = new Kolo(300, 200, 100);
+////        System.out.println(figury[2].toJson());
+////        System.out.println(figury[0]);
+////        System.out.println(figury[2]);
+//////        figury[0].fromJson(figury[2].toJson());
+////        figury[2].setColor(Color.PINK);
+////        figury[0].setColor(Color.BLUE);
+////
+////        JSONObject dataJObject;
+////        Gson gson = new Gson();
+////        String json = gson.toJson(figury[2]);
+////
+////        dataJObject = new JSONObject(json);
+////        System.out.println(dataJObject);
+////        figury[0] = gson.fromJson(dataJObject.toString(), Kolo.class );
+////        figury[0].move(100,100);
+//
 //        System.out.println(figury[0]);
 //        System.out.println(figury[2]);
-////        figury[0].fromJson(figury[2].toJson());
-//        figury[2].setColor(Color.PINK);
-//        figury[0].setColor(Color.BLUE);
 //
-//        JSONObject dataJObject;
-//        Gson gson = new Gson();
-//        String json = gson.toJson(figury[2]);
+//        figury[3] = new Kolo(300, 500, 100);
+//        figury[3].setColor(Color.RED);
+////        figury[1] = new Kolo(400, 400, 50);
+//        Point[] punkty = new Point[3];
+//        punkty[0] = new Point(400,300);
+//        punkty[1] = new Point(500,300);
+//        punkty[2] = new Point(450,400);
+////        figury[1] = new Wielokat(punkty);
+//        figury[1] = new Kolo(600, 500, 100);
+//        figury[1].setColor(Color.GREEN);
 //
-//        dataJObject = new JSONObject(json);
-//        System.out.println(dataJObject);
-//        figury[0] = gson.fromJson(dataJObject.toString(), Kolo.class );
-//        figury[0].move(100,100);
+////        FigureManager.load(FigureManager.save(figury));
 
-        System.out.println(figury[0]);
-        System.out.println(figury[2]);
-
-        figury[3] = new Kolo(300, 500, 100);
-        figury[3].setColor(Color.RED);
-//        figury[1] = new Kolo(400, 400, 50);
-        Point[] punkty = new Point[3];
-        punkty[0] = new Point(400,300);
-        punkty[1] = new Point(500,300);
-        punkty[2] = new Point(450,400);
-//        figury[1] = new Wielokat(punkty);
-        figury[1] = new Kolo(600, 500, 100);
-        figury[1].setColor(Color.GREEN);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(30, 30, 800, 600);
 
@@ -472,6 +476,7 @@ class MyJFrame extends JFrame{
         getContentPane().add(myToolbar,BorderLayout.PAGE_START);
         getContentPane().add(myCanvas);
         setVisible(true);
+
 //        showInfo();
     }
 }
