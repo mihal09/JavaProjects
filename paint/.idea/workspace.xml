@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/Prostokat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/Prostokat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FiguraProstokatna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguraProstokatna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wielokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wielokat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/GUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state relative-caret-position="544">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1200#1201#0" expanded="true" />
@@ -71,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="911">
-              <caret line="104" selection-start-line="104" selection-end-line="104" />
+            <state relative-caret-position="25">
+              <caret line="300" column="30" selection-start-line="300" selection-start-column="30" selection-end-line="300" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#setFigures#0;class#MyCanvas#0" />
@@ -91,10 +90,10 @@
                 <element signature="e#9523#9524#0" expanded="true" />
                 <element signature="method#mouseExited#0;class#MyCanvas#0" />
                 <element signature="e#10455#10456#0" expanded="true" />
+                <element signature="class#MyToolbar#0" />
                 <element signature="method#selectMode#0;class#MyToolbar#0" />
                 <element signature="e#9630#9876#0" />
                 <element signature="e#10997#11059#0" />
-                <element signature="e#10192#10240#0" />
                 <element signature="e#10280#10595#0" />
                 <element signature="e#10630#10935#0" />
                 <element signature="e#10974#11287#0" />
@@ -161,9 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clicked</find>
-      <find>pressed</find>
-      <find>tryb ed</find>
       <find>myCanv</find>
       <find>MyCanv</find>
       <find>stopDrawing();</find>
@@ -191,6 +187,9 @@
       <find>vertices</find>
       <find>debug</find>
       <find>color</find>
+      <find>tool</find>
+      <find>new Color(243,245, 247)</find>
+      <find>border</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,11 +212,11 @@
         <option value="$PROJECT_DIR$/src/RectangleExtended.java" />
         <option value="$PROJECT_DIR$/src/Kolo.java" />
         <option value="$PROJECT_DIR$/src/Prostokat.java" />
-        <option value="$PROJECT_DIR$/src/GUI.java" />
         <option value="$PROJECT_DIR$/src/FiguresFabric.java" />
         <option value="$PROJECT_DIR$/src/FigureManager.java" />
         <option value="$PROJECT_DIR$/src/FiguraProstokatna.java" />
         <option value="$PROJECT_DIR$/src/Wielokat.java" />
+        <option value="$PROJECT_DIR$/src/GUI.java" />
       </list>
     </option>
   </component>
@@ -258,7 +257,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555775192578" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555782419518" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -346,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555774915345</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="work in progress.......">
+      <created>1555775202898</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1555775202898</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -371,7 +377,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35410765" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10481586" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -426,7 +432,8 @@
     <MESSAGE value="work in progress...." />
     <MESSAGE value="work in progress....." />
     <MESSAGE value="work in progress......" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress......" />
+    <MESSAGE value="work in progress......." />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress......." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -576,41 +583,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="911">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#setFigures#0;class#MyCanvas#0" />
-            <element signature="method#selectFile#0;class#MyCanvas#0" />
-            <element signature="method#startEditing#0;class#MyCanvas#0" />
-            <element signature="method#startCreating#0;class#MyCanvas#0" />
-            <element signature="method#selectFigureName#0;class#MyCanvas#0" />
-            <element signature="method#stopDrawing#0;class#MyCanvas#0" />
-            <element signature="method#mouseClicked#0;class#MyCanvas#0" />
-            <element signature="method#mousePressed#0;class#MyCanvas#0" />
-            <element signature="method#mouseReleased#0;class#MyCanvas#0" />
-            <element signature="method#mouseDragged#0;class#MyCanvas#0" />
-            <element signature="e#9523#9524#0" expanded="true" />
-            <element signature="method#mouseExited#0;class#MyCanvas#0" />
-            <element signature="e#10455#10456#0" expanded="true" />
-            <element signature="method#selectMode#0;class#MyToolbar#0" />
-            <element signature="e#9630#9876#0" />
-            <element signature="e#10997#11059#0" />
-            <element signature="e#10192#10240#0" />
-            <element signature="e#10280#10595#0" />
-            <element signature="e#10630#10935#0" />
-            <element signature="e#10974#11287#0" />
-            <element signature="e#14621#14675#0" />
-            <element signature="e#14710#14764#0" />
-            <element signature="method#showInfo#0;class#MyJFrame#0" />
-            <element signature="e#15175#15176#0" expanded="true" />
-            <element signature="e#15221#15222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-714">
@@ -647,12 +619,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="19" column="34" lean-forward="true" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        <state relative-caret-position="544">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1200#1201#0" expanded="true" />
             <element signature="e#1241#1242#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="300" column="30" selection-start-line="300" selection-start-column="30" selection-end-line="300" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setFigures#0;class#MyCanvas#0" />
+            <element signature="method#selectFile#0;class#MyCanvas#0" />
+            <element signature="method#startEditing#0;class#MyCanvas#0" />
+            <element signature="method#startCreating#0;class#MyCanvas#0" />
+            <element signature="method#selectFigureName#0;class#MyCanvas#0" />
+            <element signature="method#stopDrawing#0;class#MyCanvas#0" />
+            <element signature="method#mouseClicked#0;class#MyCanvas#0" />
+            <element signature="method#mousePressed#0;class#MyCanvas#0" />
+            <element signature="method#mouseReleased#0;class#MyCanvas#0" />
+            <element signature="method#mouseDragged#0;class#MyCanvas#0" />
+            <element signature="e#9523#9524#0" expanded="true" />
+            <element signature="method#mouseExited#0;class#MyCanvas#0" />
+            <element signature="e#10455#10456#0" expanded="true" />
+            <element signature="class#MyToolbar#0" />
+            <element signature="method#selectMode#0;class#MyToolbar#0" />
+            <element signature="e#9630#9876#0" />
+            <element signature="e#10997#11059#0" />
+            <element signature="e#10280#10595#0" />
+            <element signature="e#10630#10935#0" />
+            <element signature="e#10974#11287#0" />
+            <element signature="e#14621#14675#0" />
+            <element signature="e#14710#14764#0" />
+            <element signature="method#showInfo#0;class#MyJFrame#0" />
+            <element signature="e#15175#15176#0" expanded="true" />
+            <element signature="e#15221#15222#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -303,17 +303,21 @@ class MyToolbar extends JPanel{
     MyCanvas myCanvas;
     JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo, bSave, bLoad;
     JPanel topPanel, filePanel, buttonsPanel,  figuresPanel;
+    private final static Color
+            backgroundColor = new Color(220, 220, 220),
+            activeColor = new Color(192,194, 196),
+            unactiveColor = new Color(243,245, 247);
     public void selectMode(RunningMode mode){
-        bEdit.setBackground(new Color(243,245, 247));
-        bDraw.setBackground(new Color(243,245, 247));
+        bEdit.setBackground(unactiveColor);
+        bDraw.setBackground(unactiveColor);
         switch(mode){
             case CREATING:{
-                bDraw.setBackground(new Color(202,204, 206));
+                bDraw.setBackground(activeColor);
                 figuresPanel.setVisible(true);
                 break;
             }
             case EDITITNG:{
-                bEdit.setBackground(new Color(202,204, 206));
+                bEdit.setBackground(activeColor);
                 figuresPanel.setVisible(false);
                 break;
             }
@@ -353,27 +357,27 @@ class MyToolbar extends JPanel{
         });
         bProstokat.addActionListener(e -> {
             myCanvas.selectFigureName("Prostokat");
-            bKolo.setBackground(new Color(243,245, 247));
-            bWielokat.setBackground(new Color(243,245, 247));
-            bProstokat.setBackground(new Color(243,245, 247));
+            bKolo.setBackground(unactiveColor);
+            bWielokat.setBackground(unactiveColor);
+            bProstokat.setBackground(unactiveColor);
 
-            bProstokat.setBackground(new Color(202,204, 206));
+            bProstokat.setBackground(activeColor);
         });
         bKolo.addActionListener(e -> {
             myCanvas.selectFigureName("Kolo");
-            bKolo.setBackground(new Color(243,245, 247));
-            bWielokat.setBackground(new Color(243,245, 247));
-            bProstokat.setBackground(new Color(243,245, 247));
+            bKolo.setBackground(unactiveColor);
+            bWielokat.setBackground(unactiveColor);
+            bProstokat.setBackground(unactiveColor);
 
-            bKolo.setBackground(new Color(202,204, 206));
+            bKolo.setBackground(activeColor);
         });
         bWielokat.addActionListener(e -> {
             myCanvas.selectFigureName("Wielokat");
-            bKolo.setBackground(new Color(243,245, 247));
-            bWielokat.setBackground(new Color(243,245, 247));
-            bProstokat.setBackground(new Color(243,245, 247));
+            bKolo.setBackground(unactiveColor);
+            bWielokat.setBackground(unactiveColor);
+            bProstokat.setBackground(unactiveColor);
 
-            bWielokat.setBackground(new Color(202,204, 206));
+            bWielokat.setBackground(activeColor);
         });
         bSave.addActionListener(e -> {
             myCanvas.showSavePanel();
@@ -398,6 +402,14 @@ class MyToolbar extends JPanel{
 
         topPanel.add(filePanel);
         topPanel.add(buttonsPanel);
+
+        figuresPanel.setBackground(backgroundColor);
+        buttonsPanel.setBackground(backgroundColor);
+        filePanel.setBackground(backgroundColor);
+        topPanel.setBackground(backgroundColor);
+        setBackground(backgroundColor);
+
+        setBorder(BorderFactory.createLineBorder(Color.black));
 
         add(topPanel);
         add(figuresPanel);
