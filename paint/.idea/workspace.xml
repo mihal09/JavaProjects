@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/GUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -73,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="300" column="30" selection-start-line="300" selection-start-column="30" selection-end-line="300" selection-end-column="30" />
+            <state relative-caret-position="190">
+              <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#setFigures#0;class#MyCanvas#0" />
@@ -85,12 +83,13 @@
                 <element signature="method#stopDrawing#0;class#MyCanvas#0" />
                 <element signature="method#mouseClicked#0;class#MyCanvas#0" />
                 <element signature="method#mousePressed#0;class#MyCanvas#0" />
-                <element signature="method#mouseReleased#0;class#MyCanvas#0" />
-                <element signature="method#mouseDragged#0;class#MyCanvas#0" />
-                <element signature="e#9523#9524#0" expanded="true" />
+                <element signature="e#9723#9724#0" expanded="true" />
                 <element signature="method#mouseExited#0;class#MyCanvas#0" />
-                <element signature="e#10455#10456#0" expanded="true" />
-                <element signature="class#MyToolbar#0" />
+                <element signature="e#9765#9766#0" expanded="true" />
+                <element signature="e#9813#9814#0" expanded="true" />
+                <element signature="e#10574#10575#0" expanded="true" />
+                <element signature="e#11055#11056#0" expanded="true" />
+                <element signature="e#11091#11092#0" expanded="true" />
                 <element signature="method#selectMode#0;class#MyToolbar#0" />
                 <element signature="e#9630#9876#0" />
                 <element signature="e#10997#11059#0" />
@@ -160,17 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myCanv</find>
-      <find>MyCanv</find>
-      <find>stopDrawing();</find>
-      <find>stop dr</find>
-      <find>stopdra</find>
-      <find>c</find>
-      <find>label</find>
-      <find>MyTo</find>
-      <find>action</find>
-      <find>ac</find>
-      <find>setac</find>
       <find>seta</find>
       <find>stopDraw</find>
       <find>mytoolba</find>
@@ -190,6 +178,17 @@
       <find>tool</find>
       <find>new Color(243,245, 247)</find>
       <find>border</find>
+      <find>zmien</find>
+      <find>Jcol</find>
+      <find>Myca</find>
+      <find>selectedColor</find>
+      <find>KJColo</find>
+      <find>JColor</find>
+      <find>selecty</find>
+      <find>setcolor</find>
+      <find>setSelectedColor</find>
+      <find>`</find>
+      <find>load</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -257,7 +256,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555782419518" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555784622811" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -352,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555775202898</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="work in progress........">
+      <created>1555782425872</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1555782425872</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -377,7 +383,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10481586" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28186968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -433,7 +439,8 @@
     <MESSAGE value="work in progress....." />
     <MESSAGE value="work in progress......" />
     <MESSAGE value="work in progress......." />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress......." />
+    <MESSAGE value="work in progress........" />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress........" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -631,8 +638,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="300" column="30" selection-start-line="300" selection-start-column="30" selection-end-line="300" selection-end-column="30" />
+        <state relative-caret-position="190">
+          <caret line="57" column="34" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setFigures#0;class#MyCanvas#0" />
@@ -643,12 +650,13 @@
             <element signature="method#stopDrawing#0;class#MyCanvas#0" />
             <element signature="method#mouseClicked#0;class#MyCanvas#0" />
             <element signature="method#mousePressed#0;class#MyCanvas#0" />
-            <element signature="method#mouseReleased#0;class#MyCanvas#0" />
-            <element signature="method#mouseDragged#0;class#MyCanvas#0" />
-            <element signature="e#9523#9524#0" expanded="true" />
+            <element signature="e#9723#9724#0" expanded="true" />
             <element signature="method#mouseExited#0;class#MyCanvas#0" />
-            <element signature="e#10455#10456#0" expanded="true" />
-            <element signature="class#MyToolbar#0" />
+            <element signature="e#9765#9766#0" expanded="true" />
+            <element signature="e#9813#9814#0" expanded="true" />
+            <element signature="e#10574#10575#0" expanded="true" />
+            <element signature="e#11055#11056#0" expanded="true" />
+            <element signature="e#11091#11092#0" expanded="true" />
             <element signature="method#selectMode#0;class#MyToolbar#0" />
             <element signature="e#9630#9876#0" />
             <element signature="e#10997#11059#0" />

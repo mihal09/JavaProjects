@@ -19,7 +19,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     Point paintingPivot;
     ArrayList<Point> paintingPoints = new ArrayList<>();
     String selectedFigureName = "Prostokat";
-    Color selectedColor = Color.DARK_GRAY;
+    private Color selectedColor = Color.DARK_GRAY;
     int prevX, prevY;
 
     private void setFigures(Figura[] figuresArray){
@@ -55,6 +55,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         if(file!=null) {
             setAction(ActionState.EDITING);
             setFigures(FigureManager.load(file));
+            selectedFigure = null;
             myJFrame.repaint();
         }
     }
@@ -132,7 +133,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             if (getAction() == ActionState.CREATING) { //dopiero cos ma zostac narysowane
                 Debug();
                 FiguraProstokatna temporaryFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, paintingPivot);
-                temporaryFigure.setColor(selectedColor);
+                temporaryFigure.setColor(getSelectedColor());
                 if (temporaryFigure.getDrawingType() == DrawingType.POINT) {
                     setAction(ActionState.SELECTING_POINTS);
 
@@ -192,8 +193,12 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         int y = e.getY();
 
         if(SwingUtilities.isRightMouseButton(e) && (getAction() == ActionState.MOVING || getAction() == ActionState.RESIZING || getAction() == ActionState.EDITING)){
-            if(selectedFigure!=null)
-                selectedFigure.setColor(JColorChooser.showDialog(this, "Wybierz kolor", Color.DARK_GRAY));
+            if(selectedFigure!=null){
+                Color color = JColorChooser.showDialog(this, "Wybierz kolor", selectedFigure.getColor());
+                if(color!=null)
+                    selectedFigure.setColor(color);
+                action = ActionState.EDITING;
+            }
             myJFrame.repaint();
         }
 
@@ -202,10 +207,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
                 stopDrawing(ActionState.EDITING);
             } else if (getAction() == ActionState.MOVING) {
                 setAction(ActionState.EDITING);
-                selectedFigure = null;
+//                selectedFigure = null;
             } else if (getAction() == ActionState.RESIZING) {
                 setAction(ActionState.EDITING);
-                selectedFigure = null;
+//                selectedFigure = null;
             }
         }
         System.out.println("Mouse released:"+x+","+y);
@@ -220,7 +225,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             myJFrame.setCursor(Cursor.CROSSHAIR_CURSOR);
             Point p = new Point(x,y);
             selectedFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, p);
-            selectedFigure.setColor(selectedColor);
+            selectedFigure.setColor(getSelectedColor());
             shouldRepaint=true;
         }
 //        System.out.println("Mouse dragged:"+x+","+y);
@@ -253,14 +258,13 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     void Debug(){
-        if(selectedFigure!=null)
-            System.out.println(getAction() +":"+selectedFigureName+selectedFigure.bounds);
+        System.out.println(getAction());
     }
 
     public MyCanvas(Figura[] figury, MyJFrame myJFrame){
         setAction(ActionState.CREATING);
         selectedFigureName = "Wielokat";
-        selectedColor = Color.BLACK;
+        setSelectedColor(Color.BLACK);
         this.myJFrame = myJFrame;
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -283,7 +287,6 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     protected void setAction(ActionState action) {
-        System.out.println("ZMIENIAM NA "+action);
         this.action = action;
         try {
             if (action == ActionState.EDITING || action == ActionState.RESIZING || action == ActionState.MOVING) {
@@ -294,6 +297,19 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         catch(Exception e){}
     }
+
+    public Color getSelectedColor() {
+        return selectedColor;
+    }
+
+    public void setSelectedColor(Color selectedColor) {
+        this.selectedColor = selectedColor;
+        if(action==ActionState.EDITING){
+            if(selectedFigure!=null) {
+                selectedFigure.setColor(selectedColor);
+            }
+        }
+    }
 }
 
 /*--------------------------------------------------------------------*/
@@ -301,8 +317,8 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 class MyToolbar extends JPanel{
     MyJFrame myJFrame;
     MyCanvas myCanvas;
-    JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo, bSave, bLoad;
-    JPanel topPanel, filePanel, buttonsPanel,  figuresPanel;
+    JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo, bSave, bLoad, bColor;
+    JPanel topPanel, bottomPanel, filePanel, buttonsPanel,  figuresPanel;
     private final static Color
             backgroundColor = new Color(220, 220, 220),
             activeColor = new Color(192,194, 196),
@@ -337,8 +353,10 @@ class MyToolbar extends JPanel{
         bProstokat = new JButton("Prostokat");
         bWielokat = new JButton("Wielokat");
         bKolo = new JButton("Kolo");
+        bColor = new JButton("Zmień kolor");
         buttonsPanel = new JPanel();
         topPanel = new JPanel();
+        bottomPanel = new JPanel();
         figuresPanel = new JPanel();
         filePanel = new JPanel();
         figuresPanel.setVisible(false);
@@ -385,6 +403,14 @@ class MyToolbar extends JPanel{
         bLoad.addActionListener(e -> {
             myCanvas.showLoadPanel();
         });
+        bColor.addActionListener(e ->{
+            Color c = JColorChooser.showDialog(this, "Wybierz kolor", bColor.getBackground());
+            if(c!=null) {
+                bColor.setBackground(c);
+                myCanvas.setSelectedColor(c);
+                myJFrame.repaint();
+            }
+        });
 
 
 
@@ -403,16 +429,21 @@ class MyToolbar extends JPanel{
         topPanel.add(filePanel);
         topPanel.add(buttonsPanel);
 
+        bottomPanel.add(figuresPanel);
+        bottomPanel.add(bColor);
+        add(topPanel);
+        add(bottomPanel);
+
+        topPanel.setLayout(new GridLayout(1,2));
         figuresPanel.setBackground(backgroundColor);
         buttonsPanel.setBackground(backgroundColor);
         filePanel.setBackground(backgroundColor);
         topPanel.setBackground(backgroundColor);
+        bottomPanel.setBackground(backgroundColor);
         setBackground(backgroundColor);
-
         setBorder(BorderFactory.createLineBorder(Color.black));
 
-        add(topPanel);
-        add(figuresPanel);
+
         setVisible(true);
     }
 }
@@ -481,7 +512,7 @@ class MyJFrame extends JFrame{
 ////        FigureManager.load(FigureManager.save(figury));
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(30, 30, 800, 600);
+        setBounds(30, 30, 1200, 800);
 
         myCanvas = new MyCanvas(figury,this);
         myToolbar = new MyToolbar(this, myCanvas);
