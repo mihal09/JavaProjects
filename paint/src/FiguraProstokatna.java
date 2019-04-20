@@ -9,7 +9,7 @@ import java.awt.geom.Point2D;
 
 public abstract class FiguraProstokatna implements Figura {
     protected RectangleExtended bounds;
-    transient public Point2D.Double[] vertices;
+    protected Point2D.Double[] vertices;
     private Color color = Color.darkGray;
 
     private final static int minHeight=50, minWidth=50;
