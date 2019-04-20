@@ -33,7 +33,8 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
     public void selectFigureName(String selectedFigureName){
         this.selectedFigureName = selectedFigureName;
-        System.out.println(selectedFigureName);
+        action = ActionState.CREATING;
+        stopDrawing();
     }
     private void stopDrawing(){
         if(selectedFigure!=null)
@@ -47,14 +48,18 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseClicked(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-        System.out.println(SwingUtilities.isRightMouseButton(e));
-        System.out.println("Mouse pressed: "+x+","+y);
+        //jesli klikniety prawy przycisk myszy
+        System.out.println("Mouse clicked: "+x+","+y);
     }
 
     @Override
     public void mouseMoved(MouseEvent e){
-        if(action == ActionState.CREATING || action ==  ActionState.PAINTING || action ==  ActionState.SELECTING_POINTS){
+        if(action == ActionState.CREATING){
             myJFrame.setCursor(Cursor.DEFAULT_CURSOR);
+            return;
+        }
+        else if(action == ActionState.SELECTING_POINTS || action ==  ActionState.PAINTING){
+            myJFrame.setCursor(Cursor.CROSSHAIR_CURSOR);
             return;
         }
         int x = e.getX();
@@ -103,18 +108,21 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             }
             else
                 action = ActionState.PAINTING;
-
         }
         else if(action==ActionState.PAINTING){ //aktualnie rysujemy figure
             paintingPivot = new Point(x,y);
         }
         else if(action==ActionState.SELECTING_POINTS){ //aktualnie wybieramy punkty
-            paintingPoints.add(paintingPivot);
-            ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[paintingPoints.size()]));
             if(paintingPivot.distance(paintingPoints.get(0))<=closeCurveRadius){
                 action = ActionState.CREATING;
+                ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[paintingPoints.size()]));
                 stopDrawing();
             }
+            else {
+                paintingPoints.add(paintingPivot);
+                ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[paintingPoints.size()]));
+            }
+
         }
         else if(action==ActionState.EDITING){
             for(Figura figure : figures) {
@@ -145,7 +153,15 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     public void mouseReleased(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
+
+        if(SwingUtilities.isRightMouseButton(e) && (action == ActionState.MOVING || action == ActionState.RESIZING)){
+            if(selectedFigure!=null)
+                selectedFigure.setColor(JColorChooser.showDialog(this, "Wybierz kolor", Color.DARK_GRAY));
+            myJFrame.repaint();
+        }
+
         if(action == ActionState.PAINTING){
+            action = ActionState.CREATING;
             stopDrawing();
         }
         else if(action == ActionState.MOVING){
@@ -164,11 +180,13 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
     @Override
     public void mouseDragged(MouseEvent e) {
+        Debug();
         int x = e.getX();
         int y = e.getY();
 
         boolean shouldRepaint = false;
         if(action==ActionState.PAINTING){
+            myJFrame.setCursor(Cursor.CROSSHAIR_CURSOR);
             Point p = new Point(x,y);
             selectedFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, p);
             selectedFigure.setColor(selectedColor);
@@ -221,7 +239,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     }
 
     @Override public void mouseEntered(MouseEvent e) {
-
+        Debug();
     }
     @Override public void mouseExited(MouseEvent e) {
 

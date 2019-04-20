@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="work in progress..">
+    <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/paint/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/GUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyJFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Wielokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wielokat.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FiguraProstokatna.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="264">
+              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#move#0;class#FiguraProstokatna#0" />
@@ -48,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+            <state relative-caret-position="54">
+              <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#821#822#0" expanded="true" />
@@ -62,8 +64,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Kolo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+            <state relative-caret-position="275">
+              <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="309">
+              <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1601#1602#0" expanded="true" />
@@ -85,20 +87,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+            <state relative-caret-position="324">
+              <caret line="188" column="56" selection-start-line="188" selection-start-column="56" selection-end-line="188" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#startEditing#0;class#MyCanvas#0" />
                 <element signature="method#startCreating#0;class#MyCanvas#0" />
-                <element signature="method#selectFigureName#0;class#MyCanvas#0" />
                 <element signature="method#stopDrawing#0;class#MyCanvas#0" />
-                <element signature="e#5837#5838#0" expanded="true" />
-                <element signature="e#5858#5859#0" expanded="true" />
+                <element signature="e#6143#6144#0" expanded="true" />
+                <element signature="e#6209#6210#0" expanded="true" />
                 <element signature="method#mouseUsed#0;class#MyCanvas#0" />
-                <element signature="method#mouseEntered#0;class#MyCanvas#0" />
+                <element signature="e#8188#8189#0" expanded="true" />
                 <element signature="method#mouseExited#0;class#MyCanvas#0" />
                 <element signature="e#5862#5897#0" />
                 <element signature="e#5958#6022#0" />
@@ -106,7 +108,6 @@
                 <element signature="e#9355#9487#0" />
                 <element signature="e#9926#10253#0" />
                 <element signature="e#10282#10609#0" />
-                <element signature="method#showInfo#0;class#MyJFrame#0" />
                 <element signature="e#8730#8731#0" expanded="true" />
                 <element signature="e#8776#8777#0" expanded="true" />
               </folding>
@@ -167,7 +168,6 @@
       <find>print</find>
       <find>color</find>
       <find>figura</find>
-      <find>dragged</find>
       <find>mouseUsed</find>
       <find>tryb</find>
       <find>showinfo</find>
@@ -175,6 +175,25 @@
       <find>figures</find>
       <find>if(selectedFigure!=null)</find>
       <find>figures.add</find>
+      <find>painting</find>
+      <find>stopDrawing</find>
+      <find>stopDrawing();</find>
+      <find>action = ActionState.CREATING;</find>
+      <find>stopdr</find>
+      <find>chang</find>
+      <find>setcolo</find>
+      <find>select</find>
+      <find>pressed</find>
+      <find>MOVING</find>
+      <find>clicked</find>
+      <find>selectedFigure</find>
+      <find>released</find>
+      <find>setcolor</find>
+      <find>closeCurveRadius</find>
+      <find>mousemoved</find>
+      <find>CREATING</find>
+      <find>move</find>
+      <find>dragged</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -189,15 +208,15 @@
         <option value="$PROJECT_DIR$/src/Prostokat.java" />
         <option value="$PROJECT_DIR$/src/ActionStaTE.java" />
         <option value="$PROJECT_DIR$/src/FiguresGenerator.java" />
-        <option value="$PROJECT_DIR$/src/Kolo.java" />
         <option value="$PROJECT_DIR$/src/Enum.java" />
         <option value="$PROJECT_DIR$/src/DrawingType.java" />
         <option value="$PROJECT_DIR$/src/Figura.java" />
-        <option value="$PROJECT_DIR$/src/FiguraProstokatna.java" />
         <option value="$PROJECT_DIR$/src/FiguresFabric.java" />
         <option value="$PROJECT_DIR$/src/ActionState.java" />
-        <option value="$PROJECT_DIR$/src/Wielokat.java" />
+        <option value="$PROJECT_DIR$/src/FiguraProstokatna.java" />
         <option value="$PROJECT_DIR$/src/GUI.java" />
+        <option value="$PROJECT_DIR$/src/Kolo.java" />
+        <option value="$PROJECT_DIR$/src/Wielokat.java" />
       </list>
     </option>
   </component>
@@ -238,7 +257,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555718337124" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555721741165" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -298,7 +317,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555708653984</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="work in progress...">
+      <created>1555718369735</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1555718369735</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -314,7 +340,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17705382" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22946176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -365,7 +391,8 @@
     <MESSAGE value="work in progress" />
     <MESSAGE value="work in progress." />
     <MESSAGE value="work in progress.." />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress.." />
+    <MESSAGE value="work in progress..." />
+    <option name="LAST_COMMIT_MESSAGE" value="work in progress..." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -392,54 +419,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="1" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/FiguraProstokatna.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#move#0;class#FiguraProstokatna#0" />
-            <element signature="method#getNearestVertice#0;class#FiguraProstokatna#0" />
-            <element signature="method#moveVertice#0;class#FiguraProstokatna#0" />
-            <element signature="method#FiguraProstokatna#2;class#FiguraProstokatna#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Kolo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1601#1602#0" expanded="true" />
-            <element signature="e#1645#1646#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -481,19 +460,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+    <entry file="file://$PROJECT_DIR$/src/FiguraProstokatna.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+        <state relative-caret-position="264">
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#move#0;class#FiguraProstokatna#0" />
+            <element signature="method#getNearestVertice#0;class#FiguraProstokatna#0" />
+            <element signature="method#moveVertice#0;class#FiguraProstokatna#0" />
+            <element signature="method#FiguraProstokatna#2;class#FiguraProstokatna#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="188" column="56" selection-start-line="188" selection-start-column="56" selection-end-line="188" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#startEditing#0;class#MyCanvas#0" />
             <element signature="method#startCreating#0;class#MyCanvas#0" />
-            <element signature="method#selectFigureName#0;class#MyCanvas#0" />
             <element signature="method#stopDrawing#0;class#MyCanvas#0" />
-            <element signature="e#5837#5838#0" expanded="true" />
-            <element signature="e#5858#5859#0" expanded="true" />
+            <element signature="e#6143#6144#0" expanded="true" />
+            <element signature="e#6209#6210#0" expanded="true" />
             <element signature="method#mouseUsed#0;class#MyCanvas#0" />
-            <element signature="method#mouseEntered#0;class#MyCanvas#0" />
+            <element signature="e#8188#8189#0" expanded="true" />
             <element signature="method#mouseExited#0;class#MyCanvas#0" />
             <element signature="e#5862#5897#0" />
             <element signature="e#5958#6022#0" />
@@ -501,9 +494,42 @@
             <element signature="e#9355#9487#0" />
             <element signature="e#9926#10253#0" />
             <element signature="e#10282#10609#0" />
-            <element signature="method#showInfo#0;class#MyJFrame#0" />
             <element signature="e#8730#8731#0" expanded="true" />
             <element signature="e#8776#8777#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#821#822#0" expanded="true" />
+            <element signature="e#878#879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Kolo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="83" column="43" selection-start-line="83" selection-start-column="43" selection-end-line="83" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1601#1602#0" expanded="true" />
+            <element signature="e#1645#1646#0" expanded="true" />
           </folding>
         </state>
       </provider>
