@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 
 
 public abstract class FiguraProstokatna implements Figura {
+    public static boolean paintBorders = true;
     protected RectangleExtended bounds;
     protected Point2D.Double[] vertices;
     private Color color = Color.darkGray;

@@ -96,10 +96,12 @@ public class Wielokat extends FiguraProstokatna {
 
 //        g2D.fillOval((int)path.getBounds().getCenterX(),(int)path.getBounds().getCenterY(), 20, 20);
         g2D.setTransform(initialTransform);
-        Stroke dashed = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL, 0, new float[]{8}, 0);
-        g2D.setStroke(dashed);
-        g2D.setColor(new Color(0,0,0, 48));
-        g2D.drawRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
+        if(paintBorders) {
+            Stroke dashed = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL, 0, new float[]{8}, 0);
+            g2D.setStroke(dashed);
+            g2D.setColor(new Color(0, 0, 0, 48));
+            g2D.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
+        }
         g2D.dispose();
     }
 }

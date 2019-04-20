@@ -22,13 +22,13 @@ public class Prostokat extends FiguraProstokatna {
         g2D.setColor(getColor());
         g2D.fillRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
 
-        Stroke dashed = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL, 0, new float[]{8}, 0);
-        g2D.setStroke(dashed);
-        g2D.setColor(new Color(0,0,0, 48));
-        g2D.drawRect( (int)bounds.getX(),(int)bounds.getY(), (int)bounds.getWidth(), (int)bounds.getHeight());
+        if(paintBorders) {
+            Stroke dashed = new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL, 0, new float[]{8}, 0);
+            g2D.setStroke(dashed);
+            g2D.setColor(new Color(0, 0, 0, 48));
+            g2D.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
+        }
         g2D.dispose();
-//        int r = 20;
-//        g.drawOval((int)vertices[0].getX()-r,(int)vertices[0].getY()-r, 2*r, 2*r);
     }
 
     @Override

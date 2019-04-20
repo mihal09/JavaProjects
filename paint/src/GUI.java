@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 
 /*--------------------------------------------------------------------*/
@@ -42,6 +44,20 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         return null;
     }
+    public void removeSelectedFigure(){
+        figures.remove(selectedFigure);
+        selectedFigure = null;
+        myJFrame.repaint();
+    }
+    public void changeFigureLayer(boolean moveHigher){
+        int selectedIndex = figures.indexOf(selectedFigure);
+        int nextIndex = moveHigher ? selectedIndex+1:selectedIndex-1;
+        if(nextIndex >= 0 && nextIndex < figures.size()){
+            Collections.swap(figures, selectedIndex, nextIndex);
+        }
+//        selectedFigure = null;
+        myJFrame.repaint();
+    }
     public void showSavePanel(){
         File file = selectFile();
         if(file!=null) {
@@ -79,7 +95,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             setAction(newAction);
         if(selectedFigure!=null)
             figures.add(selectedFigure);
-        selectedFigure = null;
+//        selectedFigure = null;
         myJFrame.validate();
         myJFrame.repaint();
     }
@@ -261,7 +277,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         System.out.println(getAction());
     }
 
-    public MyCanvas(Figura[] figury, MyJFrame myJFrame){
+    public MyCanvas(MyJFrame myJFrame){
         setAction(ActionState.CREATING);
         selectedFigureName = "Wielokat";
         setSelectedColor(Color.BLACK);
@@ -269,10 +285,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         addMouseListener(this);
         addMouseMotionListener(this);
         prevX = prevY = -1;
-        figures = new ArrayList<>(figury.length);
-        for(int i=0; i<figury.length; i++){
-            figures.add(figury[i]);
-        }
+        figures = new ArrayList<>();
+//        for(int i=0; i<figury.length; i++){
+//            figures.add(figury[i]);
+//        }
     }
     public void paintComponent(Graphics g) {
         if(selectedFigure !=null)
@@ -317,8 +333,11 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 class MyToolbar extends JPanel{
     MyJFrame myJFrame;
     MyCanvas myCanvas;
-    JButton bDraw, bEdit, bInfo, bProstokat, bWielokat, bKolo, bSave, bLoad, bColor;
-    JPanel topPanel, bottomPanel, filePanel, buttonsPanel,  figuresPanel;
+    JButton bDraw, bEdit, bInfo, bBorders,
+            bUp, bDown, bDelete,
+            bProstokat, bWielokat, bKolo,
+            bSave, bLoad, bColor;
+    JPanel topPanel, bottomPanel, editingPanel, filePanel, buttonsPanel,  figuresPanel;
     private final static Color
             backgroundColor = new Color(220, 220, 220),
             activeColor = new Color(192,194, 196),
@@ -330,11 +349,13 @@ class MyToolbar extends JPanel{
             case CREATING:{
                 bDraw.setBackground(activeColor);
                 figuresPanel.setVisible(true);
+                editingPanel.setVisible(false);
                 break;
             }
             case EDITITNG:{
                 bEdit.setBackground(activeColor);
                 figuresPanel.setVisible(false);
+                editingPanel.setVisible(true);
                 break;
             }
         }
@@ -348,6 +369,10 @@ class MyToolbar extends JPanel{
         bDraw = new JButton("Tryb rysowania");
         bEdit = new JButton("Tryb edycji");
         bInfo = new JButton("Info");
+        bBorders = new JButton("Przełącz obramowania");
+        bUp = new JButton("Do góry");
+        bDown = new JButton("W dół");
+        bDelete = new JButton("Usuń");
         bSave = new JButton("Zapisz");
         bLoad = new JButton("Wczytaj");
         bProstokat = new JButton("Prostokat");
@@ -358,6 +383,7 @@ class MyToolbar extends JPanel{
         topPanel = new JPanel();
         bottomPanel = new JPanel();
         figuresPanel = new JPanel();
+        editingPanel = new JPanel();
         filePanel = new JPanel();
         figuresPanel.setVisible(false);
 
@@ -372,6 +398,19 @@ class MyToolbar extends JPanel{
         });
         bInfo.addActionListener(e -> {
            myJFrame.showInfo();
+        });
+        bBorders.addActionListener(e -> {
+            FiguraProstokatna.paintBorders = !FiguraProstokatna.paintBorders;
+            myJFrame.repaint();
+        });
+        bDown.addActionListener(e -> {
+            myCanvas.changeFigureLayer(false);
+        });
+        bUp.addActionListener(e -> {
+            myCanvas.changeFigureLayer(true);
+        });
+        bDelete.addActionListener(e ->{
+            myCanvas.removeSelectedFigure();
         });
         bProstokat.addActionListener(e -> {
             myCanvas.selectFigureName("Prostokat");
@@ -419,17 +458,23 @@ class MyToolbar extends JPanel{
         figuresPanel.add(bWielokat);
         figuresPanel.add(bKolo);
 
+        editingPanel.add(bDown);
+        editingPanel.add(bUp);
+        editingPanel.add(bDelete);
+
         filePanel.add(bSave);
         filePanel.add(bLoad);
 
         buttonsPanel.add(bDraw);
         buttonsPanel.add(bEdit);
+        buttonsPanel.add(bBorders);
         buttonsPanel.add(bInfo);
 
         topPanel.add(filePanel);
         topPanel.add(buttonsPanel);
 
         bottomPanel.add(figuresPanel);
+        bottomPanel.add(editingPanel);
         bottomPanel.add(bColor);
         add(topPanel);
         add(bottomPanel);
@@ -440,6 +485,7 @@ class MyToolbar extends JPanel{
         filePanel.setBackground(backgroundColor);
         topPanel.setBackground(backgroundColor);
         bottomPanel.setBackground(backgroundColor);
+        editingPanel.setBackground(backgroundColor);
         setBackground(backgroundColor);
         setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -472,58 +518,17 @@ class MyJFrame extends JFrame{
         d.setSize(600, 300);
         d.show();
     }
-
     public MyJFrame(){
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("FiGURU");
-        FiguraProstokatna[] figury = new FiguraProstokatna[0];
-//        figury[0] = new Prostokat(100, 200, 200, 150);
-//        figury[2] = new Kolo(300, 200, 100);
-////        System.out.println(figury[2].toJson());
-////        System.out.println(figury[0]);
-////        System.out.println(figury[2]);
-//////        figury[0].fromJson(figury[2].toJson());
-////        figury[2].setColor(Color.PINK);
-////        figury[0].setColor(Color.BLUE);
-////
-////        JSONObject dataJObject;
-////        Gson gson = new Gson();
-////        String json = gson.toJson(figury[2]);
-////
-////        dataJObject = new JSONObject(json);
-////        System.out.println(dataJObject);
-////        figury[0] = gson.fromJson(dataJObject.toString(), Kolo.class );
-////        figury[0].move(100,100);
-//
-//        System.out.println(figury[0]);
-//        System.out.println(figury[2]);
-//
-//        figury[3] = new Kolo(300, 500, 100);
-//        figury[3].setColor(Color.RED);
-////        figury[1] = new Kolo(400, 400, 50);
-//        Point[] punkty = new Point[3];
-//        punkty[0] = new Point(400,300);
-//        punkty[1] = new Point(500,300);
-//        punkty[2] = new Point(450,400);
-////        figury[1] = new Wielokat(punkty);
-//        figury[1] = new Kolo(600, 500, 100);
-//        figury[1].setColor(Color.GREEN);
-//
-////        FigureManager.load(FigureManager.save(figury));
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(30, 30, 1200, 800);
-
-        myCanvas = new MyCanvas(figury,this);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        myCanvas = new MyCanvas(this);
         myToolbar = new MyToolbar(this, myCanvas);
+        setBounds(30, 30, 1200, 800);
         getContentPane().add(myToolbar,BorderLayout.PAGE_START);
         getContentPane().add(myCanvas);
         setVisible(true);
-
-//        showInfo();
     }
 }
-
 public class GUI {
     public static void main(String[] args){
         JFrame window = new MyJFrame();
