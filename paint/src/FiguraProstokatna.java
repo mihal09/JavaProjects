@@ -1,16 +1,11 @@
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.json.JSONObject;
-import org.omg.CORBA.Bounds;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 
-public abstract class FiguraProstokatna implements Figura {
-    public static boolean paintBorders = true;
-    protected RectangleExtended bounds;
-    protected Point2D.Double[] vertices;
+abstract class FiguraProstokatna implements Figura {
+    static boolean paintBorders = true;
+    RectangleExtended bounds;
+    Point2D.Double[] vertices;
     private Color color = Color.darkGray;
 
     private final static int minHeight=50, minWidth=50;
@@ -20,8 +15,8 @@ public abstract class FiguraProstokatna implements Figura {
         bounds.setLocation((int)bounds.getX()+dx,(int)bounds.getY()+dy);
         //przesuwamy punkty
         if(vertices!=null) {
-            for (int i = 0; i < vertices.length; i++) {
-                vertices[i].setLocation(vertices[i].getX() + dx, vertices[i].getY() + dy);
+            for (Point2D.Double vertex : vertices) {
+                vertex.setLocation(vertex.getX() + dx, vertex.getY() + dy);
             }
         }
     }
@@ -56,14 +51,14 @@ public abstract class FiguraProstokatna implements Figura {
 
         //przeskalowanie punktow
         if(vertices!=null) {
-            for (int i = 0; i < vertices.length; i++) {
-                double xPercentage = signumSelectedX*(vertices[i].getX() - pivot.getX()) / bounds.getWidth();
-                double yPercentage = signumSelectedY*(vertices[i].getY() - pivot.getY()) / bounds.getHeight();
+            for (Point2D.Double vertex : vertices) {
+                double xPercentage = signumSelectedX * (vertex.getX() - pivot.getX()) / bounds.getWidth();
+                double yPercentage = signumSelectedY * (vertex.getY() - pivot.getY()) / bounds.getHeight();
 
-                double newX = xPercentage * newWidth + pivot.getX() ;
+                double newX = xPercentage * newWidth + pivot.getX();
                 double newY = yPercentage * newHeight + pivot.getY();
 
-                vertices[i].setLocation(newX, newY);
+                vertex.setLocation(newX, newY);
             }
         }
         bounds = new RectangleExtended(pivot, selectedChanged);
@@ -72,7 +67,7 @@ public abstract class FiguraProstokatna implements Figura {
     public void setColor(Color color) {
             this.color = color;
     }
-    public Color getColor(){
+    Color getColor(){
         return this.color;
     }
     public DrawingType getDrawingType() {
@@ -80,13 +75,13 @@ public abstract class FiguraProstokatna implements Figura {
     }
 
 
-    public FiguraProstokatna(Point p1, Point p2){
+    FiguraProstokatna(Point p1, Point p2){
         bounds = new RectangleExtended(p1, p2);
     }
-    public FiguraProstokatna(int x, int y, int width, int height){
+    FiguraProstokatna(int x, int y, int width, int height){
         bounds = new RectangleExtended(x,y,width,height);
     }
-    public FiguraProstokatna(){
+    FiguraProstokatna(){
         bounds = new RectangleExtended();
         setColor(null);
     }

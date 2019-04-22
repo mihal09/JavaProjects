@@ -2,13 +2,14 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 
 public class Wielokat extends FiguraProstokatna {
-    transient GeneralPath path;
-    int xOffset, yOffset;
-    double scaleX, scaleY;
-    public Wielokat(Point[] points) {
+    private transient GeneralPath path;
+    private int xOffset;
+    private int yOffset;
+    private double scaleX;
+    private double scaleY;
+    Wielokat(Point[] points) {
         super();
         addVertices(points);
     }
@@ -16,7 +17,7 @@ public class Wielokat extends FiguraProstokatna {
         if(vertices!=null)
             addVertices(vertices);
     }
-    public void addVertices(Point[] points){
+    void addVertices(Point[] points){
         if(points==null)
             return;
         vertices = new Point2D.Double[points.length];
@@ -34,7 +35,7 @@ public class Wielokat extends FiguraProstokatna {
         path.closePath();
         bounds.setBounds(path.getBounds());
     }
-    public void addVertices(Point2D.Double[] pointsDouble){
+    private void addVertices(Point2D.Double[] pointsDouble){
         if(pointsDouble==null)
             return;
         Point[] points = new Point[pointsDouble.length];
@@ -67,7 +68,7 @@ public class Wielokat extends FiguraProstokatna {
         yOffset += newY-oldY;
         scaleX *= newWidth/oldWidth;
         scaleY *= newHeight/oldHeight;
-        System.out.println(scaleX +":"+ scaleY);
+//        System.out.println(scaleX +":"+ scaleY);
     }
 
     @Override

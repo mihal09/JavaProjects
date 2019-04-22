@@ -1,5 +1,3 @@
-import org.json.JSONObject;
-
 import java.awt.*;
 
 public interface Figura {

@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 
@@ -14,7 +13,7 @@ import java.util.Collections;
 class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private final static int dragRadius = 15;
     private final static int closeCurveRadius = 20;
-    private MyJFrame myJFrame;
+    private final MyJFrame myJFrame;
     private ArrayList<Figura> figures;
     private FiguraProstokatna selectedFigure = null;
     private int selectedVertice = -1;
@@ -101,12 +100,6 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         myJFrame.repaint();
     }
 
-    @Override public void mouseClicked(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
-        //jesli klikniety prawy przycisk myszy
-       // System.out.println("Mouse clicked: "+x+","+y);
-    }
     @Override public void mouseMoved(MouseEvent e){
         if(getAction() == ActionState.CREATING){
             myJFrame.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
@@ -149,7 +142,6 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         if(!SwingUtilities.isRightMouseButton(e)) {
             paintingPivot = new Point(x, y);
             if (getAction() == ActionState.CREATING) { //dopiero cos ma zostac narysowane
-                Debug();
                 FiguraProstokatna temporaryFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, paintingPivot);
                 temporaryFigure.setColor(getSelectedColor());
                 if (temporaryFigure.getDrawingType() == DrawingType.POINT) {
@@ -206,12 +198,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         myJFrame.repaint();
         prevX = x;
         prevY = y;
-        System.out.println("Mouse pressed:"+x+","+y);
+//        System.out.println("Mouse pressed:"+x+","+y);
     }
-    @Override public void mouseReleased(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
 
+    @Override public void mouseReleased(MouseEvent e) {
         if(SwingUtilities.isRightMouseButton(e) && (getAction() == ActionState.MOVING || getAction() == ActionState.RESIZING || getAction() == ActionState.EDITING)){
             if(selectedFigure!=null){
                 Color color = JColorChooser.showDialog(this, "Wybierz kolor", selectedFigure.getColor());
@@ -233,10 +223,9 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 //                selectedFigure = null;
             }
         }
-        System.out.println("Mouse released:"+x+","+y);
+//        System.out.println("Mouse released:"+x+","+y);
     }
     @Override public void mouseDragged(MouseEvent e) {
-        Debug();
         int x = e.getX();
         int y = e.getY();
 
@@ -270,16 +259,9 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         prevX = x;
         prevY = y;
     }
-    @Override public void mouseEntered(MouseEvent e) {
-        Debug();
-    }
-    @Override public void mouseExited(MouseEvent e) {
-
-    }
-
-    private void Debug(){
-        System.out.println(getAction());
-    }
+    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseExited(MouseEvent e) {}
+    @Override public void mouseClicked(MouseEvent e) {}
 
     MyCanvas(MyJFrame myJFrame){
         setAction(ActionState.CREATING);
@@ -337,13 +319,15 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 /*--------------------------------------------------------------------*/
 //GORNY PANEL
 class MyToolbar extends JPanel{
-    private MyJFrame myJFrame;
-    private MyCanvas myCanvas;
-    private JButton bDraw, bEdit, bInfo, bBorders,
-            bUp, bDown, bDelete,
-            bProstokat, bWielokat, bKolo,
-            bSave, bLoad, bColor;
-    private JPanel topPanel, bottomPanel, editingPanel, filePanel, buttonsPanel,  figuresPanel;
+    private final MyJFrame myJFrame;
+    private final JButton bDraw;
+    private final JButton bEdit;
+    private final JButton bProstokat;
+    private final JButton bWielokat;
+    private final JButton bKolo;
+    private final JButton bColor;
+    private final JPanel editingPanel;
+    private final JPanel figuresPanel;
     private final static Color
             backgroundColor = new Color(220, 220, 220),
             activeColor = new Color(192,194, 196),
@@ -370,27 +354,26 @@ class MyToolbar extends JPanel{
     }
     MyToolbar(MyJFrame myJFrame, MyCanvas myCanvas) {
         this.myJFrame = myJFrame;
-        this.myCanvas = myCanvas;
         setLayout(new GridLayout(2,1));
         bDraw = new JButton("Tryb rysowania");
         bEdit = new JButton("Tryb edycji");
-        bInfo = new JButton("Info");
-        bBorders = new JButton("Przełącz obramowania");
-        bUp = new JButton("Do góry");
-        bDown = new JButton("W dół");
-        bDelete = new JButton("Usuń");
-        bSave = new JButton("Zapisz");
-        bLoad = new JButton("Wczytaj");
+        JButton bInfo = new JButton("Info");
+        JButton bBorders = new JButton("Przełącz obramowania");
+        JButton bUp = new JButton("Do góry");
+        JButton bDown = new JButton("W dół");
+        JButton bDelete = new JButton("Usuń");
+        JButton bSave = new JButton("Zapisz");
+        JButton bLoad = new JButton("Wczytaj");
         bProstokat = new JButton("Prostokat");
         bWielokat = new JButton("Wielokat");
         bKolo = new JButton("Kolo");
         bColor = new JButton("Zmień kolor");
-        buttonsPanel = new JPanel();
-        topPanel = new JPanel();
-        bottomPanel = new JPanel();
+        JPanel buttonsPanel = new JPanel();
+        JPanel topPanel = new JPanel();
+        JPanel bottomPanel = new JPanel();
         figuresPanel = new JPanel();
         editingPanel = new JPanel();
-        filePanel = new JPanel();
+        JPanel filePanel = new JPanel();
         figuresPanel.setVisible(false);
 
 
@@ -491,8 +474,7 @@ class MyToolbar extends JPanel{
 /*--------------------------------------------------------------------*/
 //GLOWNA KLATKA
 class MyJFrame extends JFrame{
-    private MyCanvas myCanvas;
-    MyToolbar myToolbar;
+    final MyToolbar myToolbar;
     void showInfo(){
         JDialog d = new JDialog(this, "Informacje", true );
         d.setLayout(new GridLayout(3,2,8,8));
@@ -515,7 +497,7 @@ class MyJFrame extends JFrame{
     MyJFrame(){
         setTitle("FiGURU");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        myCanvas = new MyCanvas(this);
+        MyCanvas myCanvas = new MyCanvas(this);
         myToolbar = new MyToolbar(this, myCanvas);
         setBounds(30, 30, 1200, 800);
         getContentPane().add(myToolbar,BorderLayout.PAGE_START);
@@ -523,7 +505,7 @@ class MyJFrame extends JFrame{
         setVisible(true);
     }
 }
-public class GUI {
+class GUI {
     public static void main(String[] args){
         JFrame window = new MyJFrame();
     }

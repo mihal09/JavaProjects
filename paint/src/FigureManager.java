@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-public class FigureManager {
+class FigureManager {
     private static JSONArray figuresToJson(Figura[] figures){
         if(figures==null)
             return new JSONArray();
@@ -31,22 +31,20 @@ public class FigureManager {
             String name = jsonObjectFigure.getString("name");
             figures[i] = gson.fromJson(jsonObjectFigure.get("data").toString(), FiguresFabric.getFigure(name, null, null).getClass());
             ((FiguraProstokatna)figures[i]).addVertices();
-            System.out.println(i+" -"+name+" : "+figures[i]);
+//            System.out.println(i+" -"+name+" : "+figures[i]);
             }
-            catch(Exception e){
-
-            }
+            catch(Exception ignored){}
         }
         return figures;
     }
 
-    public static void save(File file, Figura[] figures){
+    static void save(File file, Figura[] figures){
         String extension;
         String fileName = file.getName();
         int i = fileName.lastIndexOf('.');
         if (i > 0 && i < fileName.length() - 1) {
             extension = fileName.substring(i + 1).toLowerCase();
-            if(extension != MyFileFilter.properExtension){
+            if(!extension.equals(MyFileFilter.properExtension)){
                 fileName = fileName.substring(0,i) + "." + MyFileFilter.properExtension;
             }
         }
@@ -58,7 +56,7 @@ public class FigureManager {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             String fileContent = figuresToJson(figures).toString();
-            System.out.println(fileContent);
+//            System.out.println(fileContent);
             bw.write(fileContent);
             bw.close();
         }
@@ -66,15 +64,14 @@ public class FigureManager {
             System.out.println("Blad podczas zapisu");
         }
     }
-    public static Figura[] load(File file){
-        String fileContent = "";
+    static Figura[] load(File file){
+        StringBuilder fileContent = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null)
-                fileContent += st;
-            System.out.println(fileContent);
-            JSONArray jArrayFigures = new JSONArray(fileContent);
+                fileContent.append(st);
+            JSONArray jArrayFigures = new JSONArray(fileContent.toString());
             return figuresFromJson(jArrayFigures);
         }
         catch(Exception e){

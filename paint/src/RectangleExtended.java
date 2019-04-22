@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class RectangleExtended extends Rectangle {
-    public RectangleExtended(Point p1, Point p2){
+class RectangleExtended extends Rectangle {
+    RectangleExtended(Point p1, Point p2){
         //ustawiamy lewy gorny
         super();
         if(p1 == null || p2 == null)
@@ -21,14 +21,14 @@ public class RectangleExtended extends Rectangle {
         setLocation(minX, minY);
     }
 
-    public RectangleExtended(int x, int y, int width, int height){
+    RectangleExtended(int x, int y, int width, int height){
         super(x,y,width,height);
     }
-    public RectangleExtended(){
+    RectangleExtended(){
         super();
     }
 
-    public Point[] getVertices(){
+    Point[] getVertices(){
         Point[] vertices = new Point[4];
         vertices[0] = new Point((int)getX(), (int)getY());
         vertices[1] = new Point((int)getX() + (int)getWidth(), (int)getY());
@@ -37,7 +37,6 @@ public class RectangleExtended extends Rectangle {
         return vertices;
     }
     public Point getLowerRight(){
-        Point p = new Point((int)getX()+(int)getWidth(),(int)getY()+(int)getHeight());
-        return p;
+        return new Point((int)getX()+(int)getWidth(),(int)getY()+(int)getHeight());
     }
 }

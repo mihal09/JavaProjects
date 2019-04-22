@@ -1,10 +1,9 @@
 import java.io.File;
-import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 
-public class MyFileFilter extends FileFilter {
-    public final static String properExtension = "guru";
+class MyFileFilter extends FileFilter {
+    final static String properExtension = "guru";
 
     public boolean accept(File f) {
         if (f.isDirectory()) {
@@ -19,11 +18,7 @@ public class MyFileFilter extends FileFilter {
         }
 
         if (extension != null) {
-            if (extension.equals(properExtension)) {
-                return true;
-            } else {
-                return false;
-            }
+            return extension.equals(properExtension);
         }
         return false;
     }

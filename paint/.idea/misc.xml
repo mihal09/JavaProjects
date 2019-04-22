@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <pattern value="Figura" />
+    <pattern value="Figura" method="getDrawingType" />
+    <pattern value="RectangleExtended" method="getLowerRight" />
+    <pattern value="GUI" />
+    <pattern value="Kolo" />
+    <pattern value="Kolo" method="Kolo" />
+    <pattern value="GUI" method="main" />
+    <pattern value="MyCanvas" method="mouseClicked" />
+    <pattern value="Figura" method="move" />
+    <pattern value="Figura" method="moveVertice" />
+    <pattern value="MyCanvas" />
+    <pattern value="MyToolbar" />
+    <pattern value="MyToolbar" method="MyToolbar" />
+    <pattern value="Prostokat" />
+    <pattern value="Prostokat" method="Prostokat" />
+    <pattern value="RectangleExtended" />
+    <pattern value="Figura" method="setColor" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
