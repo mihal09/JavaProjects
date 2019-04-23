@@ -2,5 +2,12 @@
  * enum możłiwych typów tworzenia figur
  */
 public enum DrawingType {
-    RECTANGLE, POINT
+    /**
+     * figura rysowana poprzez przeciąganie myszy
+     */
+    RECTANGLE,
+    /**
+     * figura tworzona poprzez zaznaczanie wierzchołków
+     */
+    POINT
 }

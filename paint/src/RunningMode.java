@@ -1,3 +1,13 @@
+/**
+ * enum możliwych typów akcji w toolbarze
+ */
 public enum RunningMode {
-    CREATING, EDITITNG
+    /**
+     * tryb tworzenia
+     */
+    CREATING,
+    /**
+     * tryb edycji
+     */
+    EDITING
 }

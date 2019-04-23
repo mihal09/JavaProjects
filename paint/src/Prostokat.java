@@ -1,12 +1,28 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/**
+ * figura Prostokąt rozszerzająca FiguraProstokatna
+ * @see FiguraProstokatna
+ */
 public class Prostokat extends FiguraProstokatna {
+    /**
+     * tworzy prostokąt o danych dwóch wierzchołkach
+     * @param p1 wierzchołek pierwszy
+     * @param p2 wierzchołek drugi
+     */
     public Prostokat(Point p1, Point p2) {
         super(p1, p2);
         addVertices();
     }
 
+    /**
+     * tworzy prostokąt z podaniem wspolrzednych lewego gornego rogu, szerokosci i dlugosci
+     * @param x wspolrzedna x lewego gornego rogu
+     * @param y wspolrzedna y lewego gornego rogu
+     * @param width szerokosc
+      @param height wysokosc
+     */
     public Prostokat(int x, int y, int width, int height) {
         super(x,y,width,height);
         addVertices();

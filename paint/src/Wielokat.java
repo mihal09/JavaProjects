@@ -3,6 +3,10 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
+/**
+ * figura Wielokąt rozszerzająca FiguraProstokatna
+ * @see FiguraProstokatna
+ */
 public class Wielokat extends FiguraProstokatna {
     private transient GeneralPath path;
     private int xOffset;

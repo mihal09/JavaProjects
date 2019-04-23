@@ -1,12 +1,27 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
+/**
+ * figura Koło rozszerzająca FiguraProstokatna
+ * @see FiguraProstokatna
+ */
 public class Kolo extends FiguraProstokatna {
+    /**
+     * tworzy Koło z podaniem współrzędnych jego środka i promienia
+     * @param centerX współrzędna x środka
+     * @param centerY współrzędna y środka
+     * @param radius promień
+     */
     public Kolo(int centerX, int centerY, int radius) {
         super(centerX-radius,centerY-radius,2*radius,2*radius);
         addVertices();
     }
 
+    /**
+     * tworzy Koło o danych dwóch rogach
+     * @param p1 wierzchołek pierwszy
+     * @param p2 wierzchołek drugi
+     */
     public Kolo(Point p1, Point p2) {
         super(p1, p2);
         addVertices();

@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * interfejs figury
  */
-interface Figura {
+public interface Figura {
     /**
      * przesuwa figurę
      * @param dx zmiana wspolrzednej x
@@ -20,8 +20,8 @@ interface Figura {
     void moveVertice(int x, int y, int index);
 
     /**
-     * rysuje figure
-     * @param g objekt graphics
+     * rysuje figurę
+     * @param g objekt Graphics
      */
     void draw(Graphics g);
 

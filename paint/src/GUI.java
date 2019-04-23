@@ -371,7 +371,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 
             //koniec stopki
             if (action == ActionState.EDITING || action == ActionState.RESIZING || action == ActionState.MOVING) {
-                myJFrame.myToolbar.selectMode(RunningMode.EDITITNG);
+                myJFrame.myToolbar.selectMode(RunningMode.EDITING);
             } else if (action == ActionState.CREATING || action == ActionState.PAINTING || action == ActionState.SELECTING_POINTS) {
                 myJFrame.myToolbar.selectMode(RunningMode.CREATING);
             }
@@ -449,7 +449,7 @@ class MyToolbar extends JPanel{
                 editingPanel.setVisible(false);
                 break;
             }
-            case EDITITNG:{
+            case EDITING:{
                 bEdit.setBackground(activeColor);
                 figuresPanel.setVisible(false);
                 editingPanel.setVisible(true);
@@ -489,7 +489,7 @@ class MyToolbar extends JPanel{
             myCanvas.startCreating();
         });
         bEdit.addActionListener(e -> {
-            selectMode(RunningMode.EDITITNG);
+            selectMode(RunningMode.EDITING);
             myCanvas.startEditing();
         });
         bInfo.addActionListener(e -> myJFrame.showInfo());
