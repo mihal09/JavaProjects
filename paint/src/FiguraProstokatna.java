@@ -8,7 +8,7 @@ abstract class FiguraProstokatna implements Figura {
     Point2D.Double[] vertices;
     private Color color = Color.darkGray;
 
-    private final static int minHeight=50, minWidth=50;
+    private final static int minHeight=20, minWidth=20;
 
     public void move(int dx, int dy){
         //przesuwamy ramkę
@@ -89,5 +89,8 @@ abstract class FiguraProstokatna implements Figura {
     public void addVertices(){}
     public boolean isPointInside(int x, int y){
         return bounds.contains(x,y);
+    }
+    @Override public String toString(){
+        return "szerokość: "+bounds.getWidth()+", wysokość: "+bounds.getHeight()+"; x: "+bounds.getCenterX()+" y: "+bounds.getCenterY();
     }
 }

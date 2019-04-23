@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public interface Figura {
+interface Figura {
     void move(int dx, int dy);
     void moveVertice(int dx, int dy, int index);
 

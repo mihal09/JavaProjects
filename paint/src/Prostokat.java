@@ -31,8 +31,4 @@ class Prostokat extends FiguraProstokatna {
         g2D.dispose();
     }
 
-    @Override
-    public String toString() {
-        return "Prostokat"+bounds.toString();
-    }
 }

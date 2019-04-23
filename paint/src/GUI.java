@@ -14,6 +14,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private final static int dragRadius = 15;
     private final static int closeCurveRadius = 20;
     private final MyJFrame myJFrame;
+    private final MyFooter myFooter;
     private ArrayList<Figura> figures;
     private FiguraProstokatna selectedFigure = null;
     private int selectedVertice = -1;
@@ -24,6 +25,18 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private Color selectedColor = Color.DARK_GRAY;
     private int prevX;
     private int prevY;
+
+    MyCanvas(MyJFrame myJFrame, MyFooter myFooter){
+        this.myJFrame = myJFrame;
+        this.myFooter = myFooter;
+        setAction(ActionState.CREATING);
+        setSelectedColor(Color.BLACK);
+        prevX = prevY = -1;
+        selectedFigureName = "Wielokat";
+        figures = new ArrayList<>();
+        addMouseListener(this);
+        addMouseMotionListener(this);
+    }
 
     private void setFigures(Figura[] figuresArray){
         figures.clear();
@@ -155,12 +168,14 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             } else if (getAction() == ActionState.PAINTING) { //aktualnie rysujemy figure
                 paintingPivot = new Point(x, y);
             } else if (getAction() == ActionState.SELECTING_POINTS) { //aktualnie wybieramy punkty
+                myFooter.showLabel(selectedFigure);
                 if (paintingPivot.distance(paintingPoints.get(0)) <= closeCurveRadius) {
                     ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[0]));
                     stopDrawing(ActionState.EDITING);
                 } else {
                     paintingPoints.add(paintingPivot);
                     ((Wielokat) selectedFigure).addVertices(paintingPoints.toArray(new Point[0]));
+                    myFooter.showLabel(selectedFigure);
                 }
 
             } else if (getAction() == ActionState.EDITING) {
@@ -200,7 +215,6 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         prevY = y;
 //        System.out.println("Mouse pressed:"+x+","+y);
     }
-
     @Override public void mouseReleased(MouseEvent e) {
         if(SwingUtilities.isRightMouseButton(e) && (getAction() == ActionState.MOVING || getAction() == ActionState.RESIZING || getAction() == ActionState.EDITING)){
             if(selectedFigure!=null){
@@ -217,13 +231,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
                 stopDrawing(ActionState.CREATING);
             } else if (getAction() == ActionState.MOVING) {
                 setAction(ActionState.EDITING);
-//                selectedFigure = null;
             } else if (getAction() == ActionState.RESIZING) {
                 setAction(ActionState.EDITING);
-//                selectedFigure = null;
             }
         }
-//        System.out.println("Mouse released:"+x+","+y);
     }
     @Override public void mouseDragged(MouseEvent e) {
         int x = e.getX();
@@ -235,6 +246,7 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             Point p = new Point(x,y);
             selectedFigure = FiguresFabric.getFigure(selectedFigureName, paintingPivot, p);
             selectedFigure.setColor(getSelectedColor());
+            myFooter.showLabel(selectedFigure);
             shouldRepaint=true;
         }
 //        System.out.println("Mouse dragged:"+x+","+y);
@@ -245,10 +257,12 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 
         if(getAction() == ActionState.RESIZING){
             selectedFigure.moveVertice(x, y, selectedVertice);
+            myFooter.showLabel(selectedFigure);
             shouldRepaint=true;
         }
         else if(getAction() == ActionState.MOVING){
             selectedFigure.move(dx,dy);
+            myFooter.showLabel(selectedFigure);
             shouldRepaint=true;
         }
 
@@ -259,20 +273,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         prevX = x;
         prevY = y;
     }
-    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e) {System.out.println(action);}
     @Override public void mouseExited(MouseEvent e) {}
     @Override public void mouseClicked(MouseEvent e) {}
 
-    MyCanvas(MyJFrame myJFrame){
-        setAction(ActionState.CREATING);
-        selectedFigureName = "Wielokat";
-        setSelectedColor(Color.BLACK);
-        this.myJFrame = myJFrame;
-        addMouseListener(this);
-        addMouseMotionListener(this);
-        prevX = prevY = -1;
-        figures = new ArrayList<>();
-    }
     public void paintComponent(Graphics g) {
         boolean onTop = action==ActionState.PAINTING || action==ActionState.SELECTING_POINTS;
         if(!onTop){
@@ -294,6 +298,14 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private void setAction(ActionState action) {
         this.action = action;
         try {
+            //czesc odpowiedzialna za stopke
+            if(!(action == ActionState.RESIZING || action == ActionState.MOVING ||
+                action == ActionState.PAINTING || action == ActionState.SELECTING_POINTS)) {
+                myFooter.hideLabel();
+                System.out.println("Chowam stopke");
+            }
+
+            //koniec stopki
             if (action == ActionState.EDITING || action == ActionState.RESIZING || action == ActionState.MOVING) {
                 myJFrame.myToolbar.selectMode(RunningMode.EDITITNG);
             } else if (action == ActionState.CREATING || action == ActionState.PAINTING || action == ActionState.SELECTING_POINTS) {
@@ -317,6 +329,28 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 }
 
 /*--------------------------------------------------------------------*/
+//DOLNY PANEL
+class MyFooter extends JPanel{
+    JLabel selectionLabel;
+    public void showLabel(Figura figure){
+        selectionLabel.setVisible(true);
+        if(figure!=null)
+            selectionLabel.setText(figure.toString());
+        else
+            selectionLabel.setText("");
+        repaint();
+    }
+    public void hideLabel(){selectionLabel.setVisible(false);  repaint();}
+    MyFooter(){
+        setLayout(new GridLayout(2,3));
+        selectionLabel = new JLabel("TEST");
+        selectionLabel.setVerticalAlignment(SwingConstants.CENTER);
+        setBackground(MyToolbar.backgroundColor);
+        add(selectionLabel);
+        setVisible(true);
+    }
+}
+/*--------------------------------------------------------------------*/
 //GORNY PANEL
 class MyToolbar extends JPanel{
     private final MyJFrame myJFrame;
@@ -328,7 +362,7 @@ class MyToolbar extends JPanel{
     private final JButton bColor;
     private final JPanel editingPanel;
     private final JPanel figuresPanel;
-    private final static Color
+    protected final static Color
             backgroundColor = new Color(220, 220, 220),
             activeColor = new Color(192,194, 196),
             unactiveColor = new Color(243,245, 247);
@@ -475,6 +509,7 @@ class MyToolbar extends JPanel{
 //GLOWNA KLATKA
 class MyJFrame extends JFrame{
     final MyToolbar myToolbar;
+    final MyFooter myFooter;
     void showInfo(){
         JDialog d = new JDialog(this, "Informacje", true );
         d.setLayout(new GridLayout(3,2,8,8));
@@ -497,10 +532,13 @@ class MyJFrame extends JFrame{
     MyJFrame(){
         setTitle("FiGURU");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        MyCanvas myCanvas = new MyCanvas(this);
+        myFooter = new MyFooter();
+        MyCanvas myCanvas = new MyCanvas(this, myFooter);
         myToolbar = new MyToolbar(this, myCanvas);
+
         setBounds(30, 30, 1200, 800);
         getContentPane().add(myToolbar,BorderLayout.PAGE_START);
+        getContentPane().add(myFooter,BorderLayout.PAGE_END);
         getContentPane().add(myCanvas);
         setVisible(true);
     }

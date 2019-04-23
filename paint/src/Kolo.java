@@ -33,8 +33,4 @@ class Kolo extends FiguraProstokatna {
         g2D.dispose();
     }
 
-    @Override
-    public String toString() {
-        return "Kolo"+bounds.toString();
-    }
 }
