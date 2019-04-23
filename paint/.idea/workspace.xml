@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FiguresFabric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguresFabric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/Figura.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/Figura.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/FiguraProstokatna.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/MyCanvas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/Prostokat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/Prostokat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/paint/RectangleExtended.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/RectangleExtended.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,7 +121,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Figura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="629">
               <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
             </state>
           </provider>
@@ -240,7 +243,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556034454293" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556034507020" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -413,7 +416,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556034341073</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="final commit with comments fix">
+      <created>1556034467118</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1556034467118</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -427,7 +437,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18120806" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -438,7 +447,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25212464" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25212464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -503,7 +512,8 @@
     <MESSAGE value="almost final commit" />
     <MESSAGE value="added comments" />
     <MESSAGE value="final commit with comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="final commit with comments" />
+    <MESSAGE value="final commit with comments fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit with comments fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -671,7 +681,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Figura.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="629">
           <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
         </state>
       </provider>
