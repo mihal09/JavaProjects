@@ -33,9 +33,10 @@ public interface Figura {
 
     /**
      * zwraca, czy punkt o wspolrzędnych (x,y) jest w środku figury
-     * @param x
-     * @param y
-     * @return true, jeśli punkt o wspolrzędnych (x,y) jest w środku figury
+     * @param x współrzedna x punktu
+     * @param y współrzędna y punkty
+     * @return True, jeśli punkt o wspolrzędnych (x,y) jest w środku figury
+     * False w przeciwnym wypadku
      */
     boolean isPointInside(int x, int y);
 

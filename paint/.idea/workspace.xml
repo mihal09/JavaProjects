@@ -3,15 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ActionState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ActionState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DrawingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DrawingType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Figura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FiguraProstokatna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguraProstokatna.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kolo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Prostokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Prostokat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RunningMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RunningMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wielokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wielokat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FiguresFabric.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguresFabric.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +40,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Kolo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -116,17 +109,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/FiguresFabric.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-64">
-              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state relative-caret-position="160">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Figura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-183">
-              <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+            <state relative-caret-position="177">
+              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -190,17 +183,17 @@
         <option value="$PROJECT_DIR$/src/FileFilter.java" />
         <option value="$PROJECT_DIR$/src/GUI.java" />
         <option value="$PROJECT_DIR$/src/FigureManager.java" />
-        <option value="$PROJECT_DIR$/src/FiguresFabric.java" />
         <option value="$PROJECT_DIR$/src/RectangleExtended.java" />
         <option value="$PROJECT_DIR$/src/MyFileFilter.java" />
         <option value="$PROJECT_DIR$/src/FiguraProstokatna.java" />
-        <option value="$PROJECT_DIR$/src/Figura.java" />
         <option value="$PROJECT_DIR$/src/Wielokat.java" />
         <option value="$PROJECT_DIR$/src/ActionState.java" />
         <option value="$PROJECT_DIR$/src/DrawingType.java" />
         <option value="$PROJECT_DIR$/src/RunningMode.java" />
         <option value="$PROJECT_DIR$/src/Prostokat.java" />
         <option value="$PROJECT_DIR$/src/Kolo.java" />
+        <option value="$PROJECT_DIR$/src/FiguresFabric.java" />
+        <option value="$PROJECT_DIR$/src/Figura.java" />
       </list>
     </option>
   </component>
@@ -247,7 +240,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556034324256" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556034454293" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/lib/json-20180813.jar!/" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -413,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1556023713153</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="final commit with comments">
+      <created>1556034341073</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1556034341073</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -502,7 +502,8 @@
     <MESSAGE value="work in progress............" />
     <MESSAGE value="almost final commit" />
     <MESSAGE value="added comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="added comments" />
+    <MESSAGE value="final commit with comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit with comments" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -596,13 +597,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FiguresFabric.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MyFileFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -628,13 +622,6 @@
             <element signature="imports" expanded="true" />
             <element signature="method#FiguraProstokatna#2;class#FiguraProstokatna#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Figura.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-183">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -672,6 +659,20 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FiguresFabric.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Figura.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
         </state>
       </provider>
     </entry>

@@ -9,7 +9,7 @@ public class FiguresFabric{
      * @param name nazwa figury
      * @param p1 punkt pierwszego naroznika
      * @param p2 punkt drugiego naroznika
-     * @return
+     * @return objekt typu FiguraProstokatna
      */
     public static FiguraProstokatna getFigure(String name, Point p1, Point p2){
 //        System.out.println("FABRYKA TWORZY: "+name);
