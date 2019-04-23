@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * interfejs figury
+ */
 interface Figura {
     /**
      * przesuwa figurę

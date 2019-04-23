@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 
+/**
+ * abstrakcyjna klasa implementująca interfejs Figura
+ * @see Figura
+ */
 abstract class FiguraProstokatna implements Figura {
     static boolean paintBorders = true;
     RectangleExtended bounds;

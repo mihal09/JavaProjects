@@ -2,9 +2,18 @@ import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
 
-class MyFileFilter extends FileFilter {
+/**
+ * klasa odpowiedzialna za filtrację plików
+ */
+public class MyFileFilter extends FileFilter {
     final static String properExtension = "guru";
 
+    /**
+     * zwraca, czy dany plik ma odpowiednie rozszerzenie
+     * @param f plik
+     * @return True, jeśli plik ma odpowiednie rozszerzenie
+     * False, w przeciwnym wypadku
+     */
     public boolean accept(File f) {
         if (f.isDirectory()) {
             return true;
