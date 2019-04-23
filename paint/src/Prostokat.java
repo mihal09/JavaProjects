@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-class Prostokat extends FiguraProstokatna {
+public class Prostokat extends FiguraProstokatna {
     public Prostokat(Point p1, Point p2) {
         super(p1, p2);
         addVertices();

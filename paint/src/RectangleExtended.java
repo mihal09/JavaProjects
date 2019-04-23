@@ -1,6 +1,15 @@
 import java.awt.*;
 
-class RectangleExtended extends Rectangle {
+/**
+ * klasa rozszerzająca klasę Rectangle
+ * @see Rectangle
+ */
+public class RectangleExtended extends Rectangle {
+    /**
+     * konstruktor z podaniem dwóch rogow
+     * @param p1 rog 1
+     * @param p2 rog 2
+     */
     RectangleExtended(Point p1, Point p2){
         //ustawiamy lewy gorny
         super();
@@ -21,6 +30,13 @@ class RectangleExtended extends Rectangle {
         setLocation(minX, minY);
     }
 
+    /**
+     * konstruktor z podaniem wspolrzednych lewego gornego rogu, szerokosci i dlugosci
+     * @param x wspolrzedna x lewego gornego rogu
+     * @param y wspolrzedna y lewego gornego rogu
+     * @param width szerokosc
+     * @param height wysokosc
+     */
     RectangleExtended(int x, int y, int width, int height){
         super(x,y,width,height);
     }
@@ -28,7 +44,11 @@ class RectangleExtended extends Rectangle {
         super();
     }
 
-    Point[] getVertices(){
+    /**
+     * zwraca listę wierzchołków tego prostokąta
+     * @return lista wierchołków
+     */
+    public Point[] getVertices(){
         Point[] vertices = new Point[4];
         vertices[0] = new Point((int)getX(), (int)getY());
         vertices[1] = new Point((int)getX() + (int)getWidth(), (int)getY());
@@ -36,6 +56,11 @@ class RectangleExtended extends Rectangle {
         vertices[3] = new Point((int)getX() + (int)getWidth(), (int)getY() + (int)getHeight());
         return vertices;
     }
+
+    /**
+     * zwraca współrzędne prawego dolnego wiercholka
+     * @return współrzędne prawego dolnego wiercholka
+     */
     public Point getLowerRight(){
         return new Point((int)getX()+(int)getWidth(),(int)getY()+(int)getHeight());
     }

@@ -86,6 +86,9 @@ abstract class FiguraProstokatna implements Figura {
         setColor(null);
     }
 
+    /**
+     * odswieza dane o punktach
+     */
     public void addVertices(){}
     public boolean isPointInside(int x, int y){
         return bounds.contains(x,y);

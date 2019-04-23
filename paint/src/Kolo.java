@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-class Kolo extends FiguraProstokatna {
+public class Kolo extends FiguraProstokatna {
     public Kolo(int centerX, int centerY, int radius) {
         super(centerX-radius,centerY-radius,2*radius,2*radius);
         addVertices();

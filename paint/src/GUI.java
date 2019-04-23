@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 
+
 /*--------------------------------------------------------------------*/
 //PLOTNO
 class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
@@ -26,6 +27,11 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
     private int prevX;
     private int prevY;
 
+    /**
+     * konstruktor
+     * @param myJFrame odniesienie do elementu MyJFrame
+     * @param myFooter odniesienie do elementu MyFooter
+     */
     MyCanvas(MyJFrame myJFrame, MyFooter myFooter){
         this.myJFrame = myJFrame;
         this.myFooter = myFooter;
@@ -38,15 +44,29 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         addMouseMotionListener(this);
     }
 
+    /**
+     * czyści aktualne figury i dodaje figury z podanej listy
+     * @param figuresArray tablica typu Figura
+     */
     private void setFigures(Figura[] figuresArray){
         figures.clear();
         if(figuresArray==null)
             return;
         figures = new ArrayList<>(Arrays.asList(figuresArray));
     }
+
+
+    /**
+     * @return lista aktualnych figur
+     */
     private Figura[] getFigures(){
         return figures.toArray(new Figura[0]);
     }
+
+
+    /**
+     * @return plik wybrany przez użytkownika
+     */
     private File selectFile(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.addChoosableFileFilter(new MyFileFilter());
@@ -55,11 +75,20 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         return null;
     }
+
+    /**
+     * usuwa z listy figur wybraną figurę
+     */
     void removeSelectedFigure(){
         figures.remove(selectedFigure);
         selectedFigure = null;
         myJFrame.repaint();
     }
+
+    /**
+     * podwyższa/obniża warstwę aktualnej figury
+     * @param moveHigher czy podnieść figurę w górę
+     */
     void changeFigureLayer(boolean moveHigher){
         int selectedIndex = figures.indexOf(selectedFigure);
         int nextIndex = moveHigher ? selectedIndex+1:selectedIndex-1;
@@ -68,6 +97,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
         myJFrame.repaint();
     }
+
+    /**
+     * pokazuje panel zapisu pliku
+     */
     void showSavePanel(){
         File file = selectFile();
         if(file!=null) {
@@ -76,6 +109,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             myJFrame.repaint();
         }
     }
+
+    /**
+     * pokazuje panel wczytu pliku
+     */
     void showLoadPanel(){
         File file = selectFile();
         if(file!=null) {
@@ -85,6 +122,10 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             myJFrame.repaint();
         }
     }
+
+    /**
+     * rozpoczyna edycję
+     */
     void startEditing(){
         if(getAction() == ActionState.NOTHING  ||
            getAction() == ActionState.CREATING ||
@@ -92,14 +133,28 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
             stopDrawing(ActionState.EDITING);
         }
     }
+
+    /**
+     * rozpoczyna tworzenie figury
+     */
     void startCreating(){
         if(getAction() ==ActionState.NOTHING || getAction() ==ActionState.EDITING)
             setAction(ActionState.CREATING);
     }
+
+    /**
+     * ustawia nazwę figury, która ma byćrysowana
+     * @param selectedFigureName nazwa figury
+     */
     void selectFigureName(String selectedFigureName){
         this.selectedFigureName = selectedFigureName;
         stopDrawing(ActionState.CREATING);
     }
+
+    /**
+     * przestaje rysowanie, dodaje narysowaną figurędo listy figur, zmienia akcjęna przyszłą akcję
+     * @param newAction przyszła akcja
+     */
     private void stopDrawing(ActionState newAction){
         if(selectedFigure!=null){
             if(action==ActionState.SELECTING_POINTS || action == ActionState.PAINTING)
@@ -292,9 +347,18 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         }
     }
 
+    /**
+     * zwraca akcję
+     * @return aktualna akcja
+     */
     private ActionState getAction() {
         return action;
     }
+
+    /**
+     * ustawia akcję
+     * @param action nowa akcja
+     */
     private void setAction(ActionState action) {
         this.action = action;
         try {
@@ -315,9 +379,18 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
         catch(Exception ignored){}
     }
 
+    /**
+     * zwraca aktualny kolor
+     * @return aktualny kolor
+     */
     private Color getSelectedColor() {
         return selectedColor;
     }
+
+    /**
+     * ustawia aktualny kolor
+     * @param selectedColor nowy kolor
+     */
     void setSelectedColor(Color selectedColor) {
         this.selectedColor = selectedColor;
         if(action==ActionState.EDITING){

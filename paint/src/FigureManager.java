@@ -4,7 +4,10 @@ import org.json.JSONObject;
 
 import java.io.*;
 
-class FigureManager {
+/**
+ * Klasa odpowiedzialna za zapis i odczyt figur z pliku
+ */
+public class FigureManager {
     private static JSONArray figuresToJson(Figura[] figures){
         if(figures==null)
             return new JSONArray();
@@ -38,7 +41,12 @@ class FigureManager {
         return figures;
     }
 
-    static void save(File file, Figura[] figures){
+    /**
+     * zapisuje listę figur do pliku
+     * @param file plik do którego zostaną zapisane figury
+     * @param figures lista figur
+     */
+    public static void save(File file, Figura[] figures){
         String extension;
         String fileName = file.getName();
         int i = fileName.lastIndexOf('.');
@@ -64,7 +72,13 @@ class FigureManager {
             System.out.println("Blad podczas zapisu");
         }
     }
-    static Figura[] load(File file){
+
+    /**
+     * odczytuje zapisane figury z pliku
+     * @param file plik z którego wczytywane są dane
+     * @return lista figur
+     */
+    public static Figura[] load(File file){
         StringBuilder fileContent = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
