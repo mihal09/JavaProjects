@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="">
+    <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="almost final commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Figura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Figura.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FiguraProstokatna.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FiguraProstokatna.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Kolo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kolo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Prostokat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Prostokat.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,7 +54,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1186">
+            <state relative-caret-position="138">
               <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -103,8 +99,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="162" column="53" lean-forward="true" selection-start-line="162" selection-start-column="53" selection-end-line="162" selection-end-column="53" />
+            <state relative-caret-position="356">
+              <caret line="364" column="4" selection-start-line="364" selection-start-column="4" selection-end-line="364" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#stopDrawing#0;class#MyCanvas#0" />
@@ -113,7 +109,6 @@
                 <element signature="e#11033#11034#0" expanded="true" />
                 <element signature="e#11062#11063#0" expanded="true" />
                 <element signature="e#12267#12268#0" expanded="true" />
-                <element signature="class#MyToolbar#0" />
                 <element signature="method#selectMode#0;class#MyToolbar#0" />
                 <element signature="method#MyToolbar#0;class#MyToolbar#0" />
               </folding>
@@ -393,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1555967341710</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="almost final commit">
+      <created>1556019874720</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556019874720</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -418,7 +420,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13597734" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.13597734" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -426,7 +428,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.26770538" />
+      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.26770538" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.34560907" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -480,7 +482,8 @@
     <MESSAGE value="work in progress.........." />
     <MESSAGE value="work in progress..........." />
     <MESSAGE value="work in progress............" />
-    <option name="LAST_COMMIT_MESSAGE" value="work in progress............" />
+    <MESSAGE value="almost final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost final commit" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_202/src.zip!/java/awt/Cursor.java">
@@ -593,16 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1186">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="395">
@@ -634,10 +627,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Wielokat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="162" column="53" lean-forward="true" selection-start-line="162" selection-start-column="53" selection-end-line="162" selection-end-column="53" />
+        <state relative-caret-position="356">
+          <caret line="364" column="4" selection-start-line="364" selection-start-column="4" selection-end-line="364" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#stopDrawing#0;class#MyCanvas#0" />
@@ -646,7 +649,6 @@
             <element signature="e#11033#11034#0" expanded="true" />
             <element signature="e#11062#11063#0" expanded="true" />
             <element signature="e#12267#12268#0" expanded="true" />
-            <element signature="class#MyToolbar#0" />
             <element signature="method#selectMode#0;class#MyToolbar#0" />
             <element signature="method#MyToolbar#0;class#MyToolbar#0" />
           </folding>

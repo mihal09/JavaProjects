@@ -331,8 +331,8 @@ class MyCanvas extends JPanel implements MouseMotionListener, MouseListener {
 /*--------------------------------------------------------------------*/
 //DOLNY PANEL
 class MyFooter extends JPanel{
-    JLabel selectionLabel;
-    public void showLabel(Figura figure){
+    private final JLabel selectionLabel;
+    void showLabel(Figura figure){
         selectionLabel.setVisible(true);
         if(figure!=null)
             selectionLabel.setText(figure.toString());
@@ -340,7 +340,7 @@ class MyFooter extends JPanel{
             selectionLabel.setText("");
         repaint();
     }
-    public void hideLabel(){selectionLabel.setVisible(false);  repaint();}
+    void hideLabel(){selectionLabel.setVisible(false);  repaint();}
     MyFooter(){
         setLayout(new GridLayout(2,3));
         selectionLabel = new JLabel("TEST");
@@ -362,7 +362,7 @@ class MyToolbar extends JPanel{
     private final JButton bColor;
     private final JPanel editingPanel;
     private final JPanel figuresPanel;
-    protected final static Color
+    final static Color
             backgroundColor = new Color(220, 220, 220),
             activeColor = new Color(192,194, 196),
             unactiveColor = new Color(243,245, 247);
@@ -509,7 +509,7 @@ class MyToolbar extends JPanel{
 //GLOWNA KLATKA
 class MyJFrame extends JFrame{
     final MyToolbar myToolbar;
-    final MyFooter myFooter;
+    private final MyFooter myFooter;
     void showInfo(){
         JDialog d = new JDialog(this, "Informacje", true );
         d.setLayout(new GridLayout(3,2,8,8));
