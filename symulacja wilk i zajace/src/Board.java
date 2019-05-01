@@ -35,21 +35,16 @@ public class Board {
     }
 
     public void killRabbit(int x, int y){
-        for(Rabbit rabbit : rabbits){
-            if(rabbit.getX() == x && rabbit.getY() == y) {
-                rabbits.remove(rabbit);
-                return;
-            }
-        }
+        rabbits.remove(getClosestRabbit(x,y));
     }
 
     public boolean isFurtherFromWolf(int x1, int y1, int x2, int y2 ){
         return isFurtherFromPoint(x1,y1,x2,y2,wolf.getX(),wolf.getY())==1;
     }
     public boolean isCloserFromClosestRabbit(int x1, int y1, int x2, int y2){
-        Pair<Integer, Integer> closestRabbit = getClosestRabbit(x1,y1);
-        System.out.println(closestRabbit.getKey()+":"+closestRabbit.getValue());
-        return isFurtherFromPoint(x1,y1,x2,y2,closestRabbit.getKey(),closestRabbit.getValue())==-1;
+        Rabbit closestRabbit = getClosestRabbit(x1,y1);
+        System.out.println(closestRabbit.getX()+":"+closestRabbit.getY());
+        return isFurtherFromPoint(x1,y1,x2,y2,closestRabbit.getX(),closestRabbit.getY())==-1;
     }
 
     private int isFurtherFromPoint(int x1, int y1, int x2, int y2, int xPoint, int yPoint){
@@ -65,20 +60,20 @@ public class Board {
 
 
 
-    public Pair<Integer,Integer> getClosestRabbit(int x, int y){
+    public Rabbit getClosestRabbit(int x, int y){
         System.out.println("krolikow: "+rabbits.size());
         double minDistance = Double.POSITIVE_INFINITY;
+        Rabbit closestRabbit = null;
         int bestX=Integer.MAX_VALUE, bestY=Integer.MAX_VALUE;
         for(Rabbit rabbit : rabbits){
             double distance = Math.pow(rabbit.getX() - x,2)+Math.pow(rabbit.getY()-y,2);
             System.out.println("odleglosc: "+distance);
             if(distance<minDistance){
                 minDistance = distance;
-                bestX = rabbit.getX();
-                bestY = rabbit.getY();
+                closestRabbit = rabbit;
             }
         }
-        return new Pair<>(bestX, bestY);
+        return closestRabbit;
     }
 
 

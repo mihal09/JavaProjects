@@ -2,13 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-class MyCanvas extends JPanel implements MouseListener {
+class MyCanvas extends JPanel implements MouseListener, MouseMotionListener {
     Game game;
     public MyCanvas(){
         game = new Game();
         System.out.println("tworze mycanvas");
         addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
     public void paintComponent(Graphics g) {
@@ -42,20 +44,31 @@ class MyCanvas extends JPanel implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        game.tick();
+        repaint();
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
 }
 
 class MyJFrame extends JFrame {
     MyCanvas myCanvas;
     public MyJFrame() {
-        setSize(600,800);
+        setSize(1200,800);
         setVisible(true);
         myCanvas = new MyCanvas();
-        getContentPane().setLayout(new GridBagLayout());
+        setLayout(new BorderLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 1.0;
         c.weighty = 1.0;
-        getContentPane().add(myCanvas,c);
+        add(myCanvas,BorderLayout.CENTER);
         revalidate();
     }
 }

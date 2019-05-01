@@ -3,34 +3,29 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Game {
-    int n=8;
-    int m=6;
+    int n=30;
+    int m=20;
     Board board;
     ArrayList<Rabbit> rabbits;
     Wolf wolf;
-    int boxSide = 40;
-    int boxGap = 2;
+    int boxSide = 30;
+    int boxGap = 3;
 
     public void draw(Graphics g){
         for(int y=0;y<m;y++){
             for(int x=0; x<n;x++){
                 if(board.getField(x,y)==EnumType.EMPTY){
                     g.setColor(Color.GRAY);
-//                    System.out.print("O");
                 }
                 else if(board.getField(x,y)==EnumType.RABBIT){
                     g.setColor(Color.BLUE);
-//                    System.out.print("R");
                 }
                 else {
                     g.setColor(Color.RED);
-//                    System.out.print("W");
                 }
                 g.fillRect(x*(boxSide+boxGap),y*(boxSide+boxGap),boxSide,boxSide);
             }
-//            System.out.println();
         }
-//        System.out.println("------------------------------------");
     }
 
     public Game(){
@@ -41,7 +36,7 @@ public class Game {
         wolf = new Wolf(x,y,board);
         board.setField(x,y,EnumType.WOLF);
         rabbits = new ArrayList<>();
-        for(int i=0; i<15; i++){
+        for(int i=0; i<50; i++){
             do {
                 x = RandomGenerator.nextInt(n);
                 y = RandomGenerator.nextInt(m);
@@ -57,5 +52,7 @@ public class Game {
         for(Rabbit rabbit : rabbits)
             rabbit.move();
         wolf.move();
+        if(rabbits.size()==0)
+            System.exit(0);
     }
 }
