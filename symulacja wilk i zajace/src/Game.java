@@ -2,18 +2,19 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
-public class Game {
+class Game {
     private int n,m;
-    Board board;
-    List<Rabbit> rabbits;
-    Wolf wolf;
-    int boxSide = 30;
-    int boxGap = 3;
+    private Board board;
+    private List<Rabbit> rabbits;
+    private Wolf wolf;
+    private int boxSide = 30;
+    private int boxGap = 3;
 
-    public void draw(Graphics g){
-        synchronized (board) {
+    void draw(Graphics g){
+//_
+
+
             for (int y = 0; y < m; y++) {
                 for (int x = 0; x < n; x++) {
                     if (board.getField(x, y) == EnumType.EMPTY) {
@@ -26,21 +27,19 @@ public class Game {
                     g.fillRect(x * (boxSide + boxGap), y * (boxSide + boxGap), boxSide, boxSide);
                 }
             }
-        }
     }
 
-    public Game(MyJFrame myJFrame, int rabbitNumber, int delay, int width, int height){
-        final int k = delay;
+    Game(MyJFrame myJFrame, int rabbitNumber, int delay, int width, int height){
         n = width;
         m = height;
 
-        rabbits = Collections.synchronizedList(new ArrayList<Rabbit>());
+        rabbits = Collections.synchronizedList(new ArrayList<>());
         board = new Board(n,m, myJFrame);
 
         //spawn wolf
         int x = RandomGenerator.nextInt(n);
         int y = RandomGenerator.nextInt(m);
-        wolf = new Wolf(x,y,k,board);
+        wolf = new Wolf(x,y, delay,board);
         board.setField(x,y,EnumType.WOLF);
         rabbits = new ArrayList<>();
 
@@ -51,7 +50,7 @@ public class Game {
                 x = RandomGenerator.nextInt(n);
                 y = RandomGenerator.nextInt(m);
             } while (board.isOccupied(x,y));
-            rabbits.add(new Rabbit(x,y,k,board));
+            rabbits.add(new Rabbit(x,y, delay,board));
             board.setField(x,y,EnumType.RABBIT);
         }
 

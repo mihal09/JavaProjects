@@ -1,11 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 class MyCanvas extends JPanel{
-    Game game;
+    private Game game;
     public MyCanvas(Game game){
         this.game = game;
     }
@@ -16,8 +13,8 @@ class MyCanvas extends JPanel{
 }
 
 class MyJFrame extends JFrame {
-    MyCanvas myCanvas;
-    Game game;
+    private MyCanvas myCanvas;
+    private Game game;
     public MyJFrame(int rabbitNumber, int delay, int width, int height)
     {
         game = new Game(this,rabbitNumber,delay,width,height);
@@ -30,12 +27,12 @@ class MyJFrame extends JFrame {
     }
 }
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         int rabbitNumber = Integer.valueOf(args[0]);
         int delay = Integer.valueOf(args[1]);
         int width = Integer.valueOf(args[2]);
         int height = Integer.valueOf(args[3]);
-        MyJFrame window = new MyJFrame(rabbitNumber,delay,width,height);
+        new MyJFrame(rabbitNumber,delay,width,height);
     }
 }

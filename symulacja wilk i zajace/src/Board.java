@@ -1,15 +1,12 @@
-import javafx.util.Pair;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+class Board {
     private int n, m;
-    private EnumType isOccupied[][];
+    private EnumType[][] isOccupied;
     private Wolf wolf;
     private List<Rabbit> rabbits;
-    public MyJFrame myJFrame;
-    public Board(int n, int m, MyJFrame myJFrame){
+    MyJFrame myJFrame;
+    Board(int n, int m, MyJFrame myJFrame){
         this.myJFrame = myJFrame;
         this.n = n;
         this.m = m;
@@ -21,37 +18,43 @@ public class Board {
     }
 
     public void setWolf(Wolf wolf){this.wolf = wolf;}
-    public void setRabbits(List<Rabbit> rabbits) { this.rabbits = rabbits;}
+    void setRabbits(List<Rabbit> rabbits) { this.rabbits = rabbits;}
 
-    public boolean isOccupied(int x, int y){
+    boolean isOccupied(int x, int y){
         return isOccupied[x][y]!= EnumType.EMPTY;
     }
 
-    public boolean contains(int x, int y){
-        return (x>=0)&&(x<n)&&(y>=0)&&(y<m);
+    boolean isOutOfBound(int x, int y){
+        return (x < 0) || (x >= n) || (y < 0) || (y >= m);
     }
-    public void setField(int x, int y, EnumType value){
-        this.isOccupied[x][y] = value;
+    synchronized void setField(int oldX, int oldY, int newX, int newY, EnumType value){
+        this.isOccupied[oldX][oldY] = EnumType.EMPTY;
+        this.isOccupied[newX][newY] = value;
     }
-    public EnumType getField(int x, int y){
+
+    void setField(int newX, int newY, EnumType value){
+        this.isOccupied[newX][newY] = value;
+    }
+
+    EnumType getField(int x, int y){
         return isOccupied[x][y];
     }
 
-    public void killRabbit(int x, int y){
+    void killRabbit(int x, int y){
         for(Rabbit rabbit : rabbits){
             if(rabbit.getX() == x && rabbit.getY() == y) {
-                rabbit.stop();
+                rabbit.kill();
                 rabbits.remove(rabbit);
-                setField(x,y,EnumType.WOLF);
+//                setField(x,y,x,y,EnumType.WOLF);
                 return;
             }
         }
     }
 
-    public boolean isFurtherFromWolf(int x1, int y1, int x2, int y2 ){
+    boolean isFurtherFromWolf(int x1, int y1, int x2, int y2){
         return isFurtherFromPoint(x1,y1,x2,y2,wolf.getX(),wolf.getY())==1;
     }
-    public boolean isCloserFromClosestRabbit(int x1, int y1, int x2, int y2){
+    boolean isCloserFromClosestRabbit(int x1, int y1, int x2, int y2){
         Rabbit closestRabbit = getClosestRabbit(x1,y1);
         return isFurtherFromPoint(x1,y1,x2,y2,closestRabbit.getX(),closestRabbit.getY())==-1;
     }
@@ -59,17 +62,12 @@ public class Board {
     private int isFurtherFromPoint(int x1, int y1, int x2, int y2, int xPoint, int yPoint){
         double currentDistance = Math.pow(x1-xPoint,2)+Math.pow(y1-yPoint,2);
         double newDistance = Math.pow(x2-xPoint,2)+Math.pow(y2-yPoint,2);
-        if(newDistance > currentDistance)
-            return 1;
-        else if(newDistance < currentDistance)
-            return -1;
-        else
-            return 0;
+        return Double.compare(newDistance, currentDistance);
     }
 
 
 
-    public Rabbit getClosestRabbit(int x, int y){
+    Rabbit getClosestRabbit(int x, int y){
         double minDistance = Double.POSITIVE_INFINITY;
         Rabbit closestRabbit = null;
         for(Rabbit rabbit : rabbits){
@@ -82,7 +80,7 @@ public class Board {
         return closestRabbit;
     }
 
-    public void checkGameOver() {
+    void checkGameOver() {
         if(rabbits.size()==0)
             System.exit(0);
     }

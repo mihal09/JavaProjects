@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomGenerator {
+class RandomGenerator {
     private Random random;
     private static RandomGenerator instance = new RandomGenerator();
     private RandomGenerator(){
