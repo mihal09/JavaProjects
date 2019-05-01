@@ -1,13 +1,16 @@
 import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
     private int n, m;
     private EnumType isOccupied[][];
     private Wolf wolf;
-    private ArrayList<Rabbit> rabbits;
-    public Board(int n, int m){
+    private List<Rabbit> rabbits;
+    public MyJFrame myJFrame;
+    public Board(int n, int m, MyJFrame myJFrame){
+        this.myJFrame = myJFrame;
         this.n = n;
         this.m = m;
         isOccupied = new EnumType[n][m];
@@ -18,7 +21,7 @@ public class Board {
     }
 
     public void setWolf(Wolf wolf){this.wolf = wolf;}
-    public void setRabbits(ArrayList<Rabbit> rabbits) { this.rabbits = rabbits;}
+    public void setRabbits(List<Rabbit> rabbits) { this.rabbits = rabbits;}
 
     public boolean isOccupied(int x, int y){
         return isOccupied[x][y]!= EnumType.EMPTY;
@@ -35,7 +38,14 @@ public class Board {
     }
 
     public void killRabbit(int x, int y){
-        rabbits.remove(getClosestRabbit(x,y));
+        for(Rabbit rabbit : rabbits){
+            if(rabbit.getX() == x && rabbit.getY() == y) {
+                rabbit.stop();
+                rabbits.remove(rabbit);
+                setField(x,y,EnumType.WOLF);
+                return;
+            }
+        }
     }
 
     public boolean isFurtherFromWolf(int x1, int y1, int x2, int y2 ){
@@ -43,7 +53,6 @@ public class Board {
     }
     public boolean isCloserFromClosestRabbit(int x1, int y1, int x2, int y2){
         Rabbit closestRabbit = getClosestRabbit(x1,y1);
-        System.out.println(closestRabbit.getX()+":"+closestRabbit.getY());
         return isFurtherFromPoint(x1,y1,x2,y2,closestRabbit.getX(),closestRabbit.getY())==-1;
     }
 
@@ -61,13 +70,10 @@ public class Board {
 
 
     public Rabbit getClosestRabbit(int x, int y){
-        System.out.println("krolikow: "+rabbits.size());
         double minDistance = Double.POSITIVE_INFINITY;
         Rabbit closestRabbit = null;
-        int bestX=Integer.MAX_VALUE, bestY=Integer.MAX_VALUE;
         for(Rabbit rabbit : rabbits){
             double distance = Math.pow(rabbit.getX() - x,2)+Math.pow(rabbit.getY()-y,2);
-            System.out.println("odleglosc: "+distance);
             if(distance<minDistance){
                 minDistance = distance;
                 closestRabbit = rabbit;
@@ -76,9 +82,9 @@ public class Board {
         return closestRabbit;
     }
 
-
-//    public boolean getField(int x, int y){
-//        return isOccupied[x][y];
-//    }
+    public void checkGameOver() {
+        if(rabbits.size()==0)
+            System.exit(0);
+    }
 
 }

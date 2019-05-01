@@ -4,79 +4,38 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-class MyCanvas extends JPanel implements MouseListener, MouseMotionListener {
+class MyCanvas extends JPanel{
     Game game;
-    public MyCanvas(){
-        game = new Game();
-        System.out.println("tworze mycanvas");
-        addMouseListener(this);
-        addMouseMotionListener(this);
+    public MyCanvas(Game game){
+        this.game = game;
     }
 
     public void paintComponent(Graphics g) {
         game.draw(g);
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-//        System.out.println("click");
-        game.tick();
-        repaint();
-//        System.out.println("click");
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        game.tick();
-        repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-    }
 }
 
 class MyJFrame extends JFrame {
     MyCanvas myCanvas;
-    public MyJFrame() {
+    Game game;
+    public MyJFrame(int rabbitNumber, int delay, int width, int height)
+    {
+        game = new Game(this,rabbitNumber,delay,width,height);
+        myCanvas = new MyCanvas(game);
+        setLayout(new BorderLayout());
+        add(myCanvas,BorderLayout.CENTER);
         setSize(1200,800);
         setVisible(true);
-        myCanvas = new MyCanvas();
-        setLayout(new BorderLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.weightx = 1.0;
-        c.weighty = 1.0;
-        add(myCanvas,BorderLayout.CENTER);
         revalidate();
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        JFrame window = new MyJFrame();
+        int rabbitNumber = Integer.valueOf(args[0]);
+        int delay = Integer.valueOf(args[1]);
+        int width = Integer.valueOf(args[2]);
+        int height = Integer.valueOf(args[3]);
+        MyJFrame window = new MyJFrame(rabbitNumber,delay,width,height);
     }
-
-
 }
