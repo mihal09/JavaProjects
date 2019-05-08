@@ -12,9 +12,6 @@ class Game {
     private int boxGap = 3;
 
     void draw(Graphics g){
-//_
-
-
             for (int y = 0; y < m; y++) {
                 for (int x = 0; x < n; x++) {
                     if (board.getField(x, y) == EnumType.EMPTY) {

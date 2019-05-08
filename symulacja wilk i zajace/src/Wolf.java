@@ -18,6 +18,7 @@ class Wolf extends Thread{
 
     private void move() throws InterruptedException{
         while(true) {
+            System.out.println(x+":"+y);
             if (ticksLeft > 0) {
                 ticksLeft--;
             } else {
@@ -45,7 +46,7 @@ class Wolf extends Thread{
                     }
                 }
                 if (possibleMoves.size() == 0) {
-                    return;
+                    continue;
                 }
                 int chosenIndex = RandomGenerator.nextInt(possibleMoves.size());
                 Pair<Integer, Integer> chosenPlace = possibleMoves.get(chosenIndex);
@@ -61,7 +62,6 @@ class Wolf extends Thread{
                 }
 
                 board.setField(oldX, oldY, x, y, EnumType.WOLF);
-                System.out.println(x+":"+y);
                 board.myJFrame.repaint();
             }
             int millisecondsToWait = (int) (RandomGenerator.nextInt(k + 1) + 0.5 * k);
