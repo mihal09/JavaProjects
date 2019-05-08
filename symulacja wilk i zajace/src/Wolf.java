@@ -61,6 +61,7 @@ class Wolf extends Thread{
                 }
 
                 board.setField(oldX, oldY, x, y, EnumType.WOLF);
+                System.out.println(x+":"+y);
                 board.myJFrame.repaint();
             }
             int millisecondsToWait = (int) (RandomGenerator.nextInt(k + 1) + 0.5 * k);

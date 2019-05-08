@@ -33,6 +33,8 @@ class Game {
         n = width;
         m = height;
 
+        rabbitNumber = Math.min(n*m-1, rabbitNumber);
+
         rabbits = Collections.synchronizedList(new ArrayList<>());
         board = new Board(n,m, myJFrame);
 
