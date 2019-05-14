@@ -2,7 +2,7 @@ import javafx.util.Pair;
 
 import java.util.ArrayList;
 
-class Wolf extends Thread{
+public class Wolf extends Thread{
     private int x, y;
     private int k;
     private final int waitingTicks = 5;

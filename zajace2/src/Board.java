@@ -1,6 +1,6 @@
 import java.util.List;
 
-class Board {
+public class Board {
     private int n, m;
     private EnumType[][] isOccupied;
     private Wolf wolf;

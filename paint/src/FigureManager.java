@@ -64,7 +64,6 @@ public class FigureManager {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             String fileContent = figuresToJson(figures).toString();
-//            System.out.println(fileContent);
             bw.write(fileContent);
             bw.close();
         }
