@@ -1,17 +1,17 @@
-public class BinaryTree<T extends Comparable<T>> {
-    Node<T> root;
+public class BinaryTree {
+    Node root;
     public BinaryTree(){
         root = null;
     }
-    public void insert(T value){
+    public void insert(Comparable value){
         root = insert(root, value);
     }
 
-    public void delete(T value){
+    public void delete(Comparable value){
         root = delete(root, value);
     }
 
-    private Node<T> search(Node<T> node, T value){
+    private Node search(Node node, Comparable value){
         if(node == null)
             return null;
         int comparison = value.compareTo(node.value);
@@ -26,14 +26,14 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
 
-    public Node<T> search(T value){
-        return search(root, value);
+    public boolean search(Comparable value){
+        return search(root, value)!=null;
     }
 
-    private Node<T> insert(Node<T> node, T value){
+    private Node insert(Node node, Comparable value){
         //jesteśmy na niesitniejącym dziecku liścia
         if(node==null){
-            node = new Node<>(value);
+            node = new Node(value);
         }
         //jesteśmy na liściu
         else{
@@ -50,7 +50,7 @@ public class BinaryTree<T extends Comparable<T>> {
         return node;
     }
 
-    private Node<T> delete(Node<T> node, T value){
+    private Node delete(Node node, Comparable value){
         if(node==null)
             return null;
         int comparison = value.compareTo(node.value);
@@ -64,19 +64,20 @@ public class BinaryTree<T extends Comparable<T>> {
         else{
             //zero lub jedno dziecko
             if(node.left == null){
-                Node<T> temp = node.right;
+                Node temp = node.right;
                 node.right = null;
                 return temp;
             }
             else if(node.right == null){
-                Node<T> temp = node.left;
+                Node temp = node.left;
                 node.left = null;
                 return temp;
             }
             //dwoje dzieci
             else{
+
                 //znajdz najmniejszą wartosc sposrod prawych potomkow
-                Node<T> temp = minimumValue(node.right);
+                Node temp = minimumValue(node);
                 //zastap wartosc wiercholka najmniejszą
                 node.value = temp.value;
                 //usun najmniejszą wartosc
@@ -86,12 +87,12 @@ public class BinaryTree<T extends Comparable<T>> {
         return node;
     }
 
-    public void draw(){
-        inOrder(root);
+    public String draw(){
+        return inOrder(root);
     }
 
-    private Node<T> minimumValue(Node<T> node){
-        Node<T> current = node.right;
+    public Node minimumValue(Node node){
+        Node current = node.right;
         while(current != null && current.left != null)
         {
             current = current.left;
@@ -99,11 +100,13 @@ public class BinaryTree<T extends Comparable<T>> {
         return current;
     }
 
-    private void inOrder(Node<T> node){
+    private String inOrder(Node node){
+        String result = "";
         if(node != null){
-            inOrder(node.left);
-            System.out.print(node.value+" ");
-            inOrder(node.right);
+            result += inOrder(node.left);
+            result += node.value+" ";
+            result += inOrder(node.right);
         }
+        return result;
     }
 }

@@ -1,13 +1,14 @@
 public class Test {
     public static void main(String[] args){
-        BinaryTree<String> tree = new BinaryTree<>();
-        tree.insert("aaa");
-        tree.insert("aba");
-        tree.insert("aab");
-        tree.insert("baa");
-        tree.insert("abb");
-        tree.insert("bba");
-        tree.delete("aab");
-        tree.draw();
+        BinaryTree tree = new BinaryTree();
+        tree.insert(2);
+        tree.insert(4);
+        tree.insert(6);
+        tree.insert(1);
+        tree.delete(2);
+//        System.out.println(tree.minimumValue(tree.root).value);
+
+//        System.out.println(tree.root.right.value);
+//        System.out.println(tree.draw());
     }
 }

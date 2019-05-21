@@ -3,27 +3,51 @@ import java.net.*;
 import java.io.*;
 
 public class Server {
-    static BinaryTree<DataType> tree;
-    private TypeEnum selectedType;
+    static BinaryTree tree;
+    static TypeEnum selectedType = TypeEnum.INTEGER;
 
     public static String processInput(String inputLine){
         System.out.println(inputLine);
+        String[] words = inputLine.split(" ");
+        String firstWord = words[0];
         String outputLine;
-        switch (inputLine) {
+        switch (firstWord) {
             case "search":
-//                if()
-                outputLine = "szukam";
+                if(tree.search(words[1]))
+                    outputLine = "znaleziono!";
+                else
+                    outputLine = "nie znaleziono!";
                 break;
             case "insert":
-                outputLine = "szukam";
+                Comparable object = words[1];
+                switch (selectedType){
+                    case INTEGER:
+                        object = Integer.parseInt(words[1]);
+                        break;
+                    case DOUBLE:
+                        object =  Double.parseDouble(words[1]);
+                        break;
+                    case STRING:
+                        object = words[1];
+                        break;
+                }
+                tree.insert(object);
+                outputLine = tree.draw();
                 break;
             case "delete":
-                outputLine = "usuwam";
+                tree.delete(words[1]);
+                outputLine = tree.draw();
                 break;
             case "draw":
-                outputLine = "rysuję";
+                outputLine = tree.draw();
                 break;
             case "type":
+                if(words[1].equals("Integer"))
+                    selectedType = TypeEnum.INTEGER;
+                if(words[1].equals("Double"))
+                    selectedType = TypeEnum.DOUBLE;
+                if(words[1].equals("String"))
+                    selectedType = TypeEnum.STRING;
                 outputLine = "zmieniam typ";
                 break;
             default:
@@ -33,8 +57,7 @@ public class Server {
         return outputLine;
     }
     public static void main(String[] args) {
-        tree = new BinaryTree<>();
-//        DataType value =  (Object)Integer.valueOf("123");
+        tree = new BinaryTree();
         if (args.length != 1) {
             System.err.println("Uzycie: java <port number>");
             System.exit(1);
@@ -54,12 +77,12 @@ public class Server {
             String inputLine, outputLine;
 
             // Initiate conversation with client
-            out.println("Hejka");
+            out.println("Witam serdecznie, czekam na polecenia.");
 
             while ((inputLine = in.readLine()) != null) {
                 outputLine = processInput(inputLine);
                 out.println(outputLine);
-                if (outputLine.equals("Bye."))
+                if (outputLine.equals("exit"))
                     break;
             }
         } catch (IOException e) {
