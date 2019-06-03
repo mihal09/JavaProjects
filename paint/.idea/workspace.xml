@@ -3,13 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b790c6e4-6cb2-4c3c-9112-3b15863cbf3b" name="Default Changelist" comment="final commit with comments fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/paint/FigureManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/paint/FigureManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FigureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FigureManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Rabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Rabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../symulacja wilk i zajace/src/RandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../symulacja wilk i zajace/src/RandomGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Wolf.java" beforeDir="false" afterPath="$PROJECT_DIR$/../symulacja wilk i zajace/src/Wolf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../symulacja wilk i zajace/symulacja wilk i zajace.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zajace2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../zajace2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zajace2/out/production/zajace2/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zajace2/out/production/zajace2/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zajace2/out/production/zajace2/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../zajace2/out/production/zajace2/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zajace2/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/../zajace2/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zajace2/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../zajace2/src/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="2635">
               <caret line="209" column="51" selection-start-line="209" selection-start-column="51" selection-end-line="209" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -97,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FigureManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="87" column="34" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="34" />
+            <state relative-caret-position="425">
+              <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,8 +224,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -454,7 +452,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21073826" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21610738" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -626,6 +624,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2635">
+          <caret line="209" column="51" selection-start-line="209" selection-start-column="51" selection-end-line="209" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#startCreating#0;class#MyCanvas#0" />
+            <element signature="method#selectFigureName#0;class#MyCanvas#0" />
+            <element signature="method#stopDrawing#0;class#MyCanvas#0" />
+            <element signature="method#mouseMoved#0;class#MyCanvas#0" />
+            <element signature="method#mouseReleased#0;class#MyCanvas#0" />
+            <element signature="method#mouseDragged#0;class#MyCanvas#0" />
+            <element signature="method#selectMode#0;class#MyToolbar#0" />
+            <element signature="method#MyToolbar#0;class#MyToolbar#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Prostokat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -653,16 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/FigureManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="87" column="34" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/RunningMode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -684,20 +690,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI.java">
+    <entry file="file://$PROJECT_DIR$/src/FigureManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="209" column="51" selection-start-line="209" selection-start-column="51" selection-end-line="209" selection-end-column="51" />
+        <state relative-caret-position="425">
+          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#startCreating#0;class#MyCanvas#0" />
-            <element signature="method#selectFigureName#0;class#MyCanvas#0" />
-            <element signature="method#stopDrawing#0;class#MyCanvas#0" />
-            <element signature="method#mouseMoved#0;class#MyCanvas#0" />
-            <element signature="method#mouseReleased#0;class#MyCanvas#0" />
-            <element signature="method#mouseDragged#0;class#MyCanvas#0" />
-            <element signature="method#selectMode#0;class#MyToolbar#0" />
-            <element signature="method#MyToolbar#0;class#MyToolbar#0" />
           </folding>
         </state>
       </provider>

@@ -8,8 +8,8 @@ class Game {
     private Board board;
     private List<Rabbit> rabbits;
     private Wolf wolf;
-    private int boxSide = 30;
-    private int boxGap = 3;
+    private int boxSide = 20;
+    private int boxGap = 2;
 
     void draw(Graphics g){
             for (int y = 0; y < m; y++) {

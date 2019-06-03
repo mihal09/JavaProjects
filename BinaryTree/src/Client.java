@@ -4,14 +4,25 @@ import java.net.*;
 public class Client {
     public static void main(String[] args) {
 
-        if (args.length != 2) {
-            System.err.println(
-                    "Użycie: java Client <host name> <port number>");
-            System.exit(1);
-        }
+        //Tworzenie gniazda, i sprawdzenie czy host/pory serwera nasłuchuje
+        String hostName;
+        int portNumber;
 
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+        if(args.length==0){
+            hostName= "localhost";
+            portNumber = 420;
+        }
+        else{
+            hostName = args[0];
+            String portStr = args[1];
+            try {
+                portNumber = Integer.parseInt(portStr);
+            }
+            catch(NumberFormatException nfe){
+                System.out.println("Zły typ portu. Przełączam na domyslny port: 420");
+                portNumber = 420;
+            }
+        }
 
         try (
                 Socket kkSocket = new Socket(hostName, portNumber);
@@ -25,7 +36,7 @@ public class Client {
             String fromUser;
 
             while ((fromServer = in.readLine()) != null) {
-                System.out.println("Server: " + fromServer);
+                System.out.println("Server: [ " + fromServer+ " ]");
                 if (fromServer.equals("Bye."))
                     break;
 

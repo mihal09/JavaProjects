@@ -17,6 +17,19 @@ public class Board {
         }
     }
 
+    public void update(){
+//        for (int y = 0; y < m; y++) {
+//            for (int x = 0; x < n; x++) {
+//                isOccupied[x][y] = EnumType.EMPTY;
+//            }
+//        }
+//            }
+//        for(Rabbit rabbit : rabbits){
+//
+//        }
+//        }
+    }
+
     public void setWolf(Wolf wolf){this.wolf = wolf;}
     void setRabbits(List<Rabbit> rabbits) { this.rabbits = rabbits;}
 
@@ -27,9 +40,11 @@ public class Board {
     boolean isOutOfBound(int x, int y){
         return (x < 0) || (x >= n) || (y < 0) || (y >= m);
     }
-    synchronized void setField(int oldX, int oldY, int newX, int newY, EnumType value){
-        this.isOccupied[oldX][oldY] = EnumType.EMPTY;
-        this.isOccupied[newX][newY] = value;
+    void setField(int oldX, int oldY, int newX, int newY, EnumType value){
+        synchronized (this) {
+            this.isOccupied[oldX][oldY] = EnumType.EMPTY;
+            this.isOccupied[newX][newY] = value;
+        }
     }
 
     void setField(int newX, int newY, EnumType value){
@@ -40,7 +55,7 @@ public class Board {
         return isOccupied[x][y];
     }
 
-    void killRabbit(int x, int y){
+    synchronized void killRabbit(int x, int y){
         for(Rabbit rabbit : rabbits){
             if(rabbit.getX() == x && rabbit.getY() == y) {
                 rabbit.kill();

@@ -5,6 +5,26 @@ import java.io.*;
 public class Server {
     static BinaryTree tree;
     static TypeEnum selectedType = TypeEnum.INTEGER;
+    public static Comparable parseInput(String inputObject) throws Exception {
+        Comparable object = inputObject;
+        try {
+            switch (selectedType) {
+                case INTEGER:
+                    object = Integer.parseInt(inputObject);
+                    break;
+                case DOUBLE:
+                    object = Double.parseDouble(inputObject);
+                    break;
+                case STRING:
+                    object = inputObject;
+                    break;
+            }
+        }
+        catch (Exception e){
+            throw new Exception();
+        }
+        return inputObject;
+    }
 
     public static String processInput(String inputLine){
         System.out.println(inputLine);
@@ -19,29 +39,29 @@ public class Server {
                     outputLine = "nie znaleziono!";
                 break;
             case "insert":
-                Comparable object = words[1];
-                switch (selectedType){
-                    case INTEGER:
-                        object = Integer.parseInt(words[1]);
-                        break;
-                    case DOUBLE:
-                        object =  Double.parseDouble(words[1]);
-                        break;
-                    case STRING:
-                        object = words[1];
-                        break;
+                try {
+                    Comparable object = parseInput(words[1]);
+                    tree.insert(object);
+                    outputLine = tree.draw();
                 }
-                tree.insert(object);
-                outputLine = tree.draw();
+                catch (Exception e){
+                    outputLine = "Blad przy parsowaniu, zmien typ";
+                }
                 break;
             case "delete":
-                tree.delete(words[1]);
-                outputLine = tree.draw();
+                try {
+                    Comparable object = parseInput(words[1]);
+                    tree.delete(object);
+                    outputLine = tree.draw();
+                } catch (Exception e) {
+                    outputLine = "Blad przy parsowaniu, zmien typ";
+                }
                 break;
             case "draw":
                 outputLine = tree.draw();
                 break;
             case "type":
+                tree = new BinaryTree();
                 if(words[1].equals("Integer"))
                     selectedType = TypeEnum.INTEGER;
                 if(words[1].equals("Double"))
@@ -58,12 +78,14 @@ public class Server {
     }
     public static void main(String[] args) {
         tree = new BinaryTree();
-        if (args.length != 1) {
-            System.err.println("Uzycie: java <port number>");
-            System.exit(1);
-        }
+//        if (args.length != 1) {
+//            System.err.println("Uzycie: java <port number>");
+//            System.exit(1);
+//        }
+//
+//        int portNumber = Integer.parseInt(args[0]);
 
-        int portNumber = Integer.parseInt(args[0]);
+        int portNumber = 420;
 
         try (
                 ServerSocket serverSocket = new ServerSocket(portNumber);
